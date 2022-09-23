@@ -8,7 +8,6 @@
  * Fecha: 21-09-2019
  *
  */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
@@ -30,18 +29,16 @@
 /***************************************************/
 int random_num(int inf, int sup)
 {
-
-  if (inf >= sup)
-    return -1;
-  return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0));
-  ;
-  /* your code */
+    if (inf >= sup)
+        return -1;
+    return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0));
 }
+
 void swap(int *x, int *y)
 {
-  int aux = *x;
-  *x = *y;
-  *y = aux;
+    int aux = *x;
+    *x = *y;
+    *y = aux;
 }
 /***************************************************/
 /* Function: generate_perm Date:                   */
@@ -58,27 +55,27 @@ void swap(int *x, int *y)
 /***************************************************/
 int *generate_perm(int N)
 {
-  int i;
-  int *perm;
 
-  if (N < 1)
-    return NULL;
+    int i;
+    int *perm;
 
-  perm = (int *)malloc((N) * sizeof(int));
-  if (!perm)
-    return NULL;
+    if (N < 1)
+        return NULL;
 
-  for (i = 0; i < N; i++)
-  {
-    perm[i] = i + 1;
-  }
-  for (i = 0; i < N; i++)
-  {
-    swap(&perm[i], &perm[random_num(i, N - 1)]);
-  }
+    perm = (int *)malloc((N) * sizeof(int));
+    if (!perm)
+        return NULL;
 
-  return perm;
-  /* your code */
+    for (i = 0; i < N; i++)
+    {
+        perm[i] = i + 1;
+    }
+    for (i = 0; i < N; i++)
+    {
+        swap(&perm[i], &perm[random_num(i, N - 1)]);
+    }
+
+    return perm;
 }
 
 /***************************************************/
@@ -98,30 +95,29 @@ int *generate_perm(int N)
 /***************************************************/
 int **generate_permutations(int n_perms, int N)
 {
-  int **tabla = NULL;
-  int i;
+    int **tabla = NULL;
+    int i;
 
-  if (n_perms < 1 || N < 1)
-    return NULL;
-  /*Reservamos la memoria*/
-  tabla = (int **)malloc(n_perms * sizeof(int *));
-  if (!tabla)
-    return NULL;
+    if (n_perms < 1 || N < 1)
+        return NULL;
+    /*Reservamos la memoria*/
+    tabla = (int **)malloc(n_perms * sizeof(int *));
+    if (!tabla)
+        return NULL;
 
-  for (i = 0; i < n_perms; i++)
-  {
-    tabla[i] = generate_perm(N);
-    if (!tabla[i])
+    for (i = 0; i < n_perms; i++)
     {
-      for (i = i - 1; i >= 0; i--)
-      {
-        free(tabla[i]);
-      }
-      free(tabla);
-      return NULL;
+        tabla[i] = generate_perm(N);
+        if (!tabla[i])
+        {
+            for (i = i - 1; i >= 0; i--)
+            {
+                free(tabla[i]);
+            }
+            free(tabla);
+            return NULL;
+        }
     }
-  }
 
-  return tabla;
-  /* your code */
+    return tabla;
 }

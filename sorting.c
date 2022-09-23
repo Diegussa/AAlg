@@ -9,54 +9,73 @@
  *
  */
 
-
 #include "sorting.h"
 
 /***************************************************/
 /* Function: SelectSort    Date:                   */
 /* Your comment                                    */
 /***************************************************/
-/*void swap(int *x, int *y){
-  int aux=*x;
-  *x=*y;
-  *y=aux;
 
-}*/
-int SelectSort(int* array, int ip, int iu)
+void swap1(int *x, int *y)
 {
-  if(!array || ip<1 || iu<1) return -1;
-  int i,j, min, aux,cont=0;
-  for(i=ip;i<iu;i++){
-    min=i;
-    for(j=i+1;j<=iu;j++){
-      if(array[j]<array[min]){
-        cont++;
-        min=j;
-      }
-    }
-    swap(&array[min],&array[i]);
+  int aux = *x;
+  *x = *y;
+  *y = aux;
+}
+
+
+int SelectSort(int *array, int ip, int iu)
+{
+  if (!array || ip < 1 || iu < 1 || iu > ip)
+    return ERR;
+
+  int i, j, m, aux, cont = 0;
+
+  for (i = ip; i < iu; i++)
+  {
+    m = min(array, i , iu);
+    cont += iu - i+1;
+    if (m == -1)
+      return ERR;
+
+    swap1(&array[m], &array[i]);
   }
   return cont;
-  /* Your code */
 }
-/*
-int i,j,cont, aux;
 
-for(i=iu,i>ip;i++*{
-  for(j=ip,j<i;j++){
-    if(array[j]>array[j+1]){
-       aux=array[j];
-    array[j]=array[j+1];
-    array[j+1]=aux;
+
+int SelectSortInv(int *array, int ip, int iu)
+{
+   if (!array || ip < 1 || iu < 1 || iu > ip)
+    return ERR;
+
+  int i, j, m, aux, cont = 0;
+
+  for (i = iu; i > ip; i--)
+  {
+    m = min(array, i , iu);
+    cont += iu - i+1;
+    if (m == -1)
+      return ERR;
+
+    swap1(&array[m], &array[i]);
+  }
+  return cont;
+}
+
+int min(int *array, int ip, int iu)
+{
+  int i, min;
+  if (!array || ip >= iu || ip < 0)
+    return ERR;
+
+  min = ip;
+  for (i = ip; i <= iu; i++)
+  {
+    if (array[min] > array[i])
+    {
+      min = i;
     }
-*/
-int SelectSortInv(int* array, int ip, int iu)
-{
-  /* your code */
+  }
+  return min;
 }
-
-int min(int* array, int ip, int iu)
-{
-  /* your code */
-}
-
