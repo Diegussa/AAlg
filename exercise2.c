@@ -50,11 +50,13 @@ int main(int argc, char** argv)
 
   /* print result */
   for(j = 0; j < num; j++) { 
+    
     perm = generate_perm(size);
     if (perm == NULL) { /* error */
       printf("Error: Out of memory\n");
       exit(-1);
     } else {
+     
       for(k = 0; k < size; k++) { /* print each element */
         printf("%d ", perm[k]);
       }

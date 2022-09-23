@@ -29,14 +29,21 @@
 /***************************************************/
 int random_num(int inf, int sup)
 {
-    if (inf >= sup)
+    if (inf > sup){
+        
         return -1;
+    }
+        
     return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0));
 }
 
 void swap(int *x, int *y)
-{
-    int aux = *x;
+{    
+    int aux;
+
+    if(!x||!y) return;
+
+    aux = *x;
     *x = *y;
     *y = aux;
 }
@@ -57,12 +64,12 @@ int *generate_perm(int N)
 {
 
     int i;
-    int *perm;
+    int *perm=NULL;
 
     if (N < 1)
         return NULL;
 
-    perm = (int *)malloc((N) * sizeof(int));
+    perm = (int *)malloc(N * sizeof(int));
     if (!perm)
         return NULL;
 

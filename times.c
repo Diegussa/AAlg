@@ -10,9 +10,11 @@
  */
 
 #include "times.h"
+#include <time.h>
 #include "sorting.h"
-/*#include "permutations.h"*/
+#include "permutations.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /***************************************************/
 /* Function: average_sorting_time Date:            */
@@ -22,11 +24,11 @@
 short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime)
 {
 int i, **p=NULL,suma_ob=0,n_ob=0,min_ob, max_ob=0;
-double t1, t2;
+clock_t t1, t2;
 
-if(n_perms<1||N<1||!ptime||!metodo) return ERR;//Control de errores
+if(n_perms<1||N<1||!ptime||!metodo) return ERR;/*Control de errores*/
 
-p=generate_permutations(n_perms, N);//Generacion de permutaciones y control de errores
+p=generate_permutations(n_perms, N);/*Generacion de permutaciones y control de errores*/
 if(!p) return ERR;
 
 
@@ -77,23 +79,21 @@ return OK;
 /*                                                 */
 /* Your documentation                              */
 /***************************************************/
-short generate_sorting_times(pfunc_sort method, char* file, 
-                                int num_min, int num_max, 
-                                int incr, int n_perms)
+short generate_sorting_times(pfunc_sort method, char* file, int num_min, int num_max, int incr, int n_perms)
 {
   TIME_AA *ptime=NULL;
   int i;
 
   if(!file||num_min<0||num_max<0) return ERR;
 
-  i=(num_max-num_min)/incr;//Reserva dinamica de la tabla de datos
+  i=(num_max-num_min)/incr;/*Reserva dinamica de la tabla de datos*/
   ptime=(TIME_AA*)calloc(i, sizeof(TIME_AA));
 
-  for(i=num_min; i<=num_max; i+=incr){//Ordenacion y almacenamiento de datos
+  for(i=num_min; i<=num_max; i+=incr){/*Ordenacion y almacenamiento de datos*/
     average_sorting_time(method, 100, i, &ptime[(i-num_min)/incr]);
   }
   
-  if(save_time_table(file, ptime, (num_max-num_min)/incr)<0){//Guardar en fichero
+  if(save_time_table(file, ptime, (num_max-num_min)/incr)<0){/*Guardar en fichero*/
       free(ptime);
       return ERR;
     }
@@ -113,7 +113,7 @@ short save_time_table(char* file, PTIME_AA ptime, int n_times)
   int i;
   if(!file||!ptime||n_times) return ERR;
 
-  f=fopen(file, "w"); //Apertura de archivo
+  f=fopen(file, "w"); /*Apertura de archivo*/
   if(!f) return ERR;
 
   for(i=0; i<n_times; i++){
