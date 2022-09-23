@@ -15,7 +15,7 @@
 /* Output: 0 in case of error                              */
 /* -1 otherwise                                            */
 /***********************************************************/
-https://prod.liveshare.vsengsaas.visualstudio.com/join?7D7F190D8C8AD323D77587597D33559F56C8
+
 
 #include <stdlib.h>
 #include <stdio.h>
