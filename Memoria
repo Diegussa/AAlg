@@ -1,0 +1,106 @@
+Análisis de Algoritmos 2022/2023
+ 
+
+
+Práctica 1
+ 
+
+
+
+Alejandro García Hernando, Diego Rodríguez Ortiz, Grupo 120
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Introducción.
+Aquí ponéis una introducción y discusión previa a la práctica.
+Aprender a medir el tiempo de ejeccucion de algoritmos, ver cual es más optimo, de manera practica lo visto en clase
+2. Objetivos
+Aquí indicáis el trabajo que vais a realizar en cada apartado.
+2.1 Apartado 1
+Objetivos del apartado 1.
+En el apartado 1 desarrollamos una función que genera números  enteros 	aleatorios equiprobables. 
+Lo comprobamos en el fichero exercise1.c y generamos un histograma para 	comprobar la equiprobabilidad
+Otra función no funciona
+2.2 Apartado 2
+Objetivos del apartado 2.
+definimos una función que genera una permutacion aleatoria equiprobable dado 	
+dado una lista de numeros
+Lo comprobamos con el fichero exercise2.c
+2.3 Apartado 3
+Objetivos del apartado 3.
+Genera un conjunto de permutaciones aleatorias equiprobables dados el número 	de elementos N y el numero de permutaciones n_perms
+Lo comprobamos con el fichero esercise3.c
+
+2.4 Apartado 4
+Objetivos del apartado 4.
+
+2.5 Apartado 5
+Objetivos del apartado 5.
+2.6 Apartado 6
+Objetivos del apartado 6.
+
+3. Herramientas y metodología
+Aquí ponéis qué entorno de desarrollo (Windows, Linux, MacOS) y herramientas habéis utilizado (Netbeans, Visual Studio, Eclipse, gcc, Valgrind, Gnuplot, Sort, uniq, etc) y qué metodologías de desarrollo y soluciones al problema planteado habéis empleado en cada apartado. Así como las pruebas que habéis realizado a los programas desarrollados.
+3.1 Apartado 1
+	Metodología y solución adoptada del apartado 1
+Hemos usado el capitulo 7 de Numerical recipes in C
+3.2 Apartado 2
+Metodología y solución adoptada del apartado 2
+>Usamos el pseudocódigo dado y la función del apratado 1
+3.3 Apartado 3
+Usamos la función del apartado 2
+3.4 Apartado 4
+Metodología y solución adoptada del apartado 4
+3.5 Apartado 5
+Metodología y solución adoptada del apartado 5
+3.6 Apartado 6
+Metodología y solución adoptada del apartado 6
+
+4. Código fuente
+Aquí ponéis el código fuente exclusivamente de las rutinas que habéis desarrollado vosotros en cada apartado.
+4.1 Apartado 1
+4.2 Apartado 2
+4.3 Apartado 3
+4.4 Apartado 4
+4.5 Apartado 5
+4.6 Apartado 6
+5. Resultados, Gráficas
+Aquí ponis los resultados obtenidos en cada apartado, incluyendo las posibles gráficas.
+5.1 Apartado 1
+Resultados del apartado 1.
+Gráfica del histograma de números aleatorios, comentarios a la gráfica
+5.2 Apartado 2	
+Resultados del apartado 2.
+5.3 Apartado 3
+Resultados del apartado 3.
+5.4 Apartado 4
+Resultados del apartado 4.
+5.5 Apartado 5
+Resultados del apartado 5.
+Gráfica comparando los tiempos mejor, peor y medio en OBs para SelectSort, comentarios a la gráfica.
+Gráfica con el tiempo medio de reloj para SelectSort, comentarios a la gráfica.
+5.6 Apartado 6
+Resultados del apartado 6.
+Gráfica comparando el tiempo medio de OBs para SelectSort y SelectSortInv, comentarios a la gráfica.
+Gráfica comparando el tiempo medio de reloj para SelectSort y SelectSortInv, comentarios a la gráfica.
+6. Respuesta a las preguntas teóricas.
+Aquí respondéis a las preguntas teóricas que se os han planteado en la práctica.
+6.1 Pregunta 1
+6.2 Pregunta 2
+6.3 Pregunta 3
+6.4 Pregunta 4
+6.5 Pregunta 5
+6.5 Pregunta 6
+7. Conclusiones finales.
+Discusión final sobre la práctica y los resultados obtenidos.
