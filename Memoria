@@ -57,6 +57,7 @@ Para comprobar como al crecer N crece T(N)
 
 2.6 Apartado 6
 Objetivos del apartado 6.
+Comparar el coste de la función SelectSort y SelctSortInv
 
 3. Herramientas y metodología
 Aquí ponéis qué entorno de desarrollo (Windows, Linux, MacOS) y herramientas habéis utilizado (Netbeans, Visual Studio, Eclipse, gcc, Valgrind, Gnuplot, Sort, uniq, etc) y qué metodologías de desarrollo y soluciones al problema planteado habéis empleado en cada apartado. Así como las pruebas que habéis realizado a los programas desarrollados.
@@ -84,6 +85,8 @@ Incluimos la estructura proporcionada, implementamos las 3 funciones usando las 
 Usamos el exercise5.c y la funcion clock
 3.6 Apartado 6
 Metodología y solución adoptada del apartado 6
+Realizamos la función SelectSortInv
+Usamos al funcion SelectSort pero empezamos por el límite superior en vez del inferior 
 
 4. Código fuente
 Aquí ponéis el código fuente exclusivamente de las rutinas que habéis desarrollado vosotros en cada apartado.
@@ -126,3 +129,4 @@ Aquí respondéis a las preguntas teóricas que se os han planteado en la práct
 6.5 Pregunta 6
 7. Conclusiones finales.
 Discusión final sobre la práctica y los resultados obtenidos.
+

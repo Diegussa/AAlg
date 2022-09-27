@@ -33,7 +33,8 @@ if(!p) return ERR;
 
 
 t1=clock();
-if((n_ob=metodo(p[0], 0, N-1)<0)){
+n_ob=metodo(p[0], 0, N-1);
+if((n_ob<0)){
     for (i = N - 1; i >= 0; i--)
         {
           free(p[i]);
@@ -46,7 +47,8 @@ min_ob=n_ob;
 max_ob=n_ob;
 suma_ob+=n_ob;
 for(i=1; i<n_perms; i++){
-  if((n_ob=metodo(p[i], 0, N-1)<0)){
+
+  if((n_ob=metodo(p[i], 0, N-1))<0){
     for (i = N - 1; i >= 0; i--)
         {
           free(p[i]);
@@ -92,12 +94,13 @@ short generate_sorting_times(pfunc_sort method, char* file, int num_min, int num
   for(i=num_min; i<=num_max; i+=incr){/*Ordenacion y almacenamiento de datos*/
     average_sorting_time(method, 100, i, &ptime[(i-num_min)/incr]);
   }
-  
-  if(save_time_table(file, ptime, (num_max-num_min)/incr)<0){/*Guardar en fichero*/
+ 
+  if(save_time_table(file, ptime, (int)(num_max-num_min)/incr)<0){/*Guardar en fichero*/
+    
       free(ptime);
       return ERR;
     }
-
+ 
   free(ptime);
   return OK;
 }
@@ -111,13 +114,14 @@ short save_time_table(char* file, PTIME_AA ptime, int n_times)
 {
   FILE *f=NULL;
   int i;
-  if(!file||!ptime||n_times) return ERR;
+  if(!file||!ptime||n_times<1) return ERR;
 
   f=fopen(file, "w"); /*Apertura de archivo*/
   if(!f) return ERR;
 
   for(i=0; i<n_times; i++){
-    if(5>fprintf(f, "%d    %lf    %lf    %d   %d", ptime[i].N, ptime[i].time, ptime[i].average_ob, ptime[i].max_ob, ptime[i].min_ob)){
+    if(5>fprintf(f, "%d    %f    %f    %d   %d\n", ptime[i].N, ptime[i].time, ptime[i].average_ob, ptime[i].max_ob, ptime[i].min_ob)){
+      printf("122 %d\n",i);
       fclose(f);
       return ERR;
     }

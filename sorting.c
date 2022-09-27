@@ -10,6 +10,7 @@
  */
 
 #include "sorting.h"
+#include <stdio.h>
 
 /***************************************************/
 /* Function: SelectSort    Date:                   */
@@ -26,10 +27,10 @@ void swap1(int *x, int *y)
 
 int SelectSort(int *array, int ip, int iu)
 {
-  if (!array || ip < 1 || iu < 1 || iu > ip)
-    return ERR;
+  int i, m, cont = 0;
 
-  int i, j, m, aux, cont = 0;
+  if (!array || ip < 0 || iu < 0 || iu < ip)
+    return ERR;
 
   for (i = ip; i < iu; i++)
   {
@@ -45,11 +46,13 @@ int SelectSort(int *array, int ip, int iu)
 
 
 int SelectSortInv(int *array, int ip, int iu)
-{
+{  
+  int i, m, cont = 0;
+  
    if (!array || ip < 1 || iu < 1 || iu > ip)
     return ERR;
 
-  int i, j, m, aux, cont = 0;
+
 
   for (i = iu; i > ip; i--)
   {
