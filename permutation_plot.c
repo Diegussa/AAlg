@@ -2,8 +2,9 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <time.h>
-#define N_perms 400000
-#define N_elem 5
+#define N_perms 60000
+#define N_elem 3
+#define NOMBRE "permutation_plot.txt"
 
 
 /***************************************************/
@@ -132,7 +133,6 @@ int elev(int b, int e){
     
     return k;
 }
-
 int desc(int n, int b){
     int i, suma=0, pot;
     for(i=b-1; i>=0; i--){
@@ -147,25 +147,38 @@ int desc(int n, int b){
 }
 
 int main(){
-    int i,j,**tabla,suma, M=elev(N_elem,N_elem+1), cont=0;
-    int t[M];
-    FILE*f;
+    int i,j,**tabla,suma, M=elev(N_elem,N_elem+1), cont=0, *t=NULL;
+    FILE*f=NULL;
 
     srand(time(NULL));
-    f=fopen("permutation_plot.txt","w");
-    if(!f){printf("1");return 1;}
+    t=(int*)calloc(M, sizeof(int));
+    if(!t){ //Control de errores
+        printf("Error con la reserva dinamica");
+        return 1;
+    }
+    
+    f=fopen(NOMBRE,"w");
+    if(!f){//Control de errores
+        free(t);
+        printf("Error al abrir el archivo");
+        return 1;
+        }
 
-    for(i=0;i<M;i++){
+    for(i=0;i<M;i++){ //Inicializacion
         t[i]=0;
     }
 
     tabla=generate_permutations(N_perms,N_elem);
+    if(!tabla){//Control de errores
+        free(t);
+        fclose(f);
+        printf("Error al generar las permutaciones");
+        return 1;
+    }
     
-    if(!tabla) return 1;
-    for(i=0;i<N_perms;i++){
+    for(i=0;i<N_perms;i++){//Convertimos las permutaciones a base N_elem y almacenamos el numero de veces qe se repiten
         for(j=N_elem-1,suma=0;j>=0; j--){
             suma+=(tabla[i][j]-1)*elev(N_elem,N_elem-j-1);
-
         }
         t[suma]++;
     }
@@ -173,7 +186,7 @@ int main(){
     for(i=0;i<M;i++){
         if(t[i]){//Imprimimos y contamos todas las permutaciones que aparezcan al menos una vez
             cont++;
-            fprintf(f,"%d %d\n", cont,t[i]); //para plotear este y para ver la permutacion el inferior
+            fprintf(f,"%d %d\n", cont,t[i]); //para plotear este. Para ver la permutacion el inferior
             //fprintf(f,"%d %d\n", desc(i,N_elem),t[i]);
         }
         
@@ -181,9 +194,12 @@ int main(){
 
     if(cont!=fact(N_elem)){//Controlamos que todas las permutaciones se obtengan al menos una vez
         fclose(f);
-        f=fopen("permutation_plot.txt","w");
+        f=fopen(NOMBRE,"w");
         if(!f){
-            printf("1");
+            free(t);
+            free(tabla);
+            printf("Error al arbrir el archivo");
+
             return 1;
         }
         fprintf(f, "Error");
@@ -191,5 +207,10 @@ int main(){
     
     free(tabla);
     fclose(f);
-    return 1;
+    free(t);
+
+    if(cont!=fact(N_elem)) return 1;
+
+    printf("Los datos se han obtenido con exito");
+    return 0;
 }
