@@ -147,13 +147,13 @@ int desc(int n, int b){
 }
 
 int main(){
-    int i,j,**tabla,suma, M=elev(N_elem,N_elem+2);
+    int i,j,**tabla,suma, M=elev(N_elem,N_elem+2), cont=0;
     int t[M];
     FILE*f;
 
     srand(time(NULL));
     f=fopen("permutation_plot.txt","w");
-    if(!f){printf("1");return 0;}
+    if(!f){printf("1");return 1;}
 
     for(i=0;i<M;i++){
         t[i]=0;
@@ -163,23 +163,31 @@ int main(){
     
     if(!tabla) return 1;
     for(i=0;i<N_perms;i++){
-
         for(j=N_elem-1,suma=0;j>=0; j--){
-            //fprintf(f,"%d ",tabla[i][j]);
             suma+=tabla[i][j]*elev(N_elem+1,j);
 
         }
         t[suma]++;
     }
     
-    
-    
     for(i=0;i<M;i++){
-        if(t[i]){
+        if(t[i]){//Imprimimos y contamos todas las permutaciones que aparezcan al menos una vez
+            cont++;
             fprintf(f,"%d %d\n", desc(i,N_elem+1),t[i]);
         }
         
     }
+
+    if(cont!=fact(N_elem)){//Controlamos que todas las permutaciones se obtengan al menos una vez
+        fclose(f);
+        f=fopen("permutation_plot.txt","w");
+        if(!f){
+            printf("1");
+            return 1;
+        }
+        fprintf(f, "Error");
+    }
+    printf(" %d %d", fact(N_elem), cont);
     
     free(tabla);
     fclose(f);
