@@ -147,7 +147,7 @@ int desc(int n, int b){
 }
 
 int main(){
-    int i,j,**tabla,suma, M=elev(N_elem,N_elem+2), cont=0;
+    int i,j,**tabla,suma, M=elev(N_elem,N_elem+1), cont=0;
     int t[M];
     FILE*f;
 
@@ -164,7 +164,7 @@ int main(){
     if(!tabla) return 1;
     for(i=0;i<N_perms;i++){
         for(j=N_elem-1,suma=0;j>=0; j--){
-            suma+=tabla[i][j]*elev(N_elem+1,j);
+            suma+=(tabla[i][j]-1)*elev(N_elem,N_elem-j-1);
 
         }
         t[suma]++;
@@ -173,7 +173,8 @@ int main(){
     for(i=0;i<M;i++){
         if(t[i]){//Imprimimos y contamos todas las permutaciones que aparezcan al menos una vez
             cont++;
-            fprintf(f,"%d %d\n", desc(i,N_elem+1),t[i]);
+            fprintf(f,"%d %d\n", cont,t[i]); //para plotear este y para ver la permutacion el inferior
+            //fprintf(f,"%d %d\n", desc(i,N_elem),t[i]);
         }
         
     }
@@ -187,7 +188,6 @@ int main(){
         }
         fprintf(f, "Error");
     }
-    printf(" %d %d", fact(N_elem), cont);
     
     free(tabla);
     fclose(f);
