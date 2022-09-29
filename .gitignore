@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# Carpetas VS Code
+.vscode
+
 # Object files
 *.o
 *.ko

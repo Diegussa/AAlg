@@ -6,7 +6,6 @@
 #define N_elem 3
 #define NOMBRE "permutation_plot.txt"
 
-
 /***************************************************/
 /* Function: random_num Date:                      */
 /* Authors:                                        */
