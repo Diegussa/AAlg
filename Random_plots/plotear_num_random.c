@@ -4,6 +4,7 @@
 #define MAX 1000000
 #define SUP 20
 #define INF 1
+#define RAND_MAX 13
 
 int random_num(int inf, int sup)
 {
@@ -12,7 +13,8 @@ int random_num(int inf, int sup)
         return -1;
     }
         
-    return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0));
+    /*return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0));*/
+    return inf + rand()%(sup-inf+1);
 }
 int main(){
     int t[SUP-INF+1],i;
