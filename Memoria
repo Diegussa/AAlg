@@ -82,7 +82,7 @@ En último lugar, añadimos la función clock no sin antes consultar diversa doc
 3.6 Apartado 6
 Metodología y solución adoptada del apartado 6
 Para realizar la función SelectSortInv empleamos un algoritmo muy similar al proporcionado en clase sobre el SelectSort. El cambio principal de esta nueva implementación es empezar por el límite superior en lugar del inferior.
-
+Para comprobarlo reutilizamos el fichero exercise5.c con alguna ligera modificación
 4. Código fuente
 Aquí ponéis el código fuente exclusivamente de las rutinas que habéis desarrollado vosotros en cada apartado.
 4.1 Apartado 1
