@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <limits.h>
+#include <time.h>
 #include <stdlib.h>
-#define MAX 1000000
-#define SUP 20
+#define MAX 1000000000
+#define SUP 10000
 #define INF 1
 #define RAND_MAX 13
 
@@ -19,6 +20,7 @@ int random_num(int inf, int sup)
 int main(){
     int t[SUP-INF+1],i;
     FILE*f;
+    srand(time(NULL));
     f=fopen("random_plot.txt","w");
     if(!f) return 0;
     for(i=0;i<SUP-INF+1;i++){
