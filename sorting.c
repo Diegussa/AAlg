@@ -48,16 +48,16 @@ int SelectSort(int *array, int ip, int iu)
 int SelectSortInv(int *array, int ip, int iu)
 {  
   int i, m, cont = 0;
-  
-   if (!array || ip < 1 || iu < 1 || iu > ip)
+
+   if (!array || ip < 0 || iu < 0 || iu < ip)
     return ERR;
 
-
-
+  
   for (i = iu; i > ip; i--)
   {
-    m = min(array, i , iu);
-    cont += iu - i+1;
+    
+    m = min(array, ip , i);
+    cont += i - ip+1;
     if (m == -1)
       return ERR;
 
@@ -69,7 +69,7 @@ int SelectSortInv(int *array, int ip, int iu)
 int min(int *array, int ip, int iu)
 {
   int i, min;
-  if (!array || ip >= iu || ip < 0)
+  if (!array || ip > iu || ip < 0)
     return ERR;
 
   min = ip;
