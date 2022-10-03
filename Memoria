@@ -82,7 +82,7 @@ En último lugar, añadimos la función clock no sin antes consultar diversa doc
 3.6 Apartado 6
 Metodología y solución adoptada del apartado 6
 Para realizar la función SelectSortInv empleamos un algoritmo muy similar al proporcionado en clase sobre el SelectSort. El cambio principal de esta nueva implementación es empezar por el límite superior en lugar del inferior.
-Para comprobarlo reutilizamos el fichero exercise5.c con alguna ligera modificación
+
 4. Código fuente
 Aquí ponéis el código fuente exclusivamente de las rutinas que habéis desarrollado vosotros en cada apartado.
 4.1 Apartado 1
@@ -113,15 +113,33 @@ Resultados del apartado 6.
 Gráfica comparando el tiempo medio de OBs para SelectSort y SelectSortInv, comentarios a la gráfica.
 Gráfica comparando el tiempo medio de reloj para SelectSort y SelectSortInv, comentarios a la gráfica.
 
+
 6. Respuesta a las preguntas teóricas.
 
 Aquí respondéis a las preguntas teóricas que se os han planteado en la práctica.
 6.1 Pregunta 1
+Se basa en la idea de que la función rand() devuelve un valor entre 0 y RAND_MAX, al dividirlo entre RAND_MAX+1 situamos el valor entre 0 y 1. Por último, lo situamos en el rango deseado multiplicándolo por sup - inf + 1.
+Esta función la hemos definido basándonos en procedimiento descrito en el capítulo 7 del libro "Numerical recipes in C".
+Otra función para generar números aleatorios es la siguiente:
+int aleat_num(int inf, int sup)
+{
+    if (inf > sup){
+        
+        return -1;
+    }
+        
+    return inf + (int) rand() % (sup - inf + 1.0);
+}
+En este código la función rand() devuelve un número entre 0 y RAND_MAX. Posteriormente calcula el su módulo en base (sup - inf + 1.0) y para situarlo en el rango deseado le sumamos el ínfimo.
 
 6.2 Pregunta 2
+El Select Sort ordena el array colocando el número más pequeño de los elementos restantes en el extremo izquierdo. Es decir, busca el mínimo del array y lo coloca a la izquierda, después busca el segundo elemento más pequeño y lo coloca inmediatamente después, y así sucesivamente hasta colocar todos los elementos en su lugar.
 6.3 Pregunta 3
+No es necesario que el bucle actúe sobre el último elemento de la tabla pues cuando el bucle analiza actúa sobre el penúltimo elemento de la misma tan solo quedan los 2 elementos más grandes del conjunto. En este momento coloca a la derecha de la tabla en máximo y a su izquierda el segundo más grande, quedando de este modo ordenada sin necesidad de que el bucle actúe sobre el último elemento.
 6.4 Pregunta 4
+La operación básica del Select Sort es if (array[min] > array[i]), contenida en la función min. Esto se debe a que está en el bucle más interno del algoritmo y es la que más veces se repite. Además, es muy representativa de los algoritmos que resuelven este tipo de problemas, pues todos deben comparar dos elementos.
 6.5 Pregunta 5
 6.5 Pregunta 6
 7. Conclusiones finales.
 Discusión final sobre la práctica y los resultados obtenidos.
+
