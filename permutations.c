@@ -27,6 +27,7 @@
 /* Output:                                         */
 /* int: random number                              */
 /***************************************************/
+
 int random_num(int inf, int sup) /*genera un numero entero aleatorio entre el inf y el sup*/
 {
     if (inf > sup){ /*Control de errores*/
@@ -37,8 +38,9 @@ int random_num(int inf, int sup) /*genera un numero entero aleatorio entre el in
     return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0)); /*Formula del libro*/
 }
 
-void swap(int *x, int *y) /*Cambia el valor almacenado en cada variable por el de la otra*/
-{    
+/*Cambia el valor almacenado en cada variable por el de la otra*/
+
+void swap(int *x, int *y) {    
     int aux;
 
     if(!x||!y) return;
@@ -60,8 +62,9 @@ void swap(int *x, int *y) /*Cambia el valor almacenado en cada variable por el d
 /* that contains the permitation                   */
 /* or NULL in case of error                        */
 /***************************************************/
-int *generate_perm(int N) /*Genera una permutacion de tamanyo N ordenado aleatoriamente de forma equiprobable*/
-{
+
+/*Genera una permutacion de tamanyo N ordenado aleatoriamente de forma equiprobable*/
+int *generate_perm(int N) {
 
     int i;
     int *perm=NULL;

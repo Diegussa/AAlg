@@ -16,8 +16,8 @@
 /* Function: SelectSort    Date:                   */
 /* Your comment                                    */
 /***************************************************/
-
-void swap1(int *x, int *y) /*Cambia los valores almacenados de una variable en la de la otra*/
+/*Cambia los valores almacenados de una variable en la de la otra*/
+void swap1(int *x, int *y) 
 {
   int aux = *x;
   *x = *y;
@@ -52,8 +52,8 @@ int SelectSortInv(int *array, int ip, int iu)
    if (!array || ip < 0 || iu < 0 || iu < ip) /*Control de errores*/
     return ERR;
 
-  
-  for (i = iu; i > ip; i--) /*Ordenacion al contrario que el SelectShort porque el indice comienza por el ultimo y acaba en el primero*/
+  /*Ordenacion al contrario que el SelectShort porque el indice comienza por el ultimo y acaba en el primero*/
+  for (i = iu; i > ip; i--) 
   {
     
     m = min(array, ip , i-1); /*Almacenamiento del minimo*/
