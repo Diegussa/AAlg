@@ -17,7 +17,7 @@
 /* Your comment                                    */
 /***************************************************/
 
-void swap1(int *x, int *y)
+void swap1(int *x, int *y) /*Cambia los valores almacenados de una variable en la de la otra*/
 {
   int aux = *x;
   *x = *y;
@@ -29,14 +29,14 @@ int SelectSort(int *array, int ip, int iu)
 {
   int i, m, cont = 0;
 
-  if (!array || ip < 0 || iu < 0 || iu < ip)
+  if (!array || ip < 0 || iu < 0 || iu < ip) /*Control de errores*/
     return ERR;
 
-  for (i = ip; i < iu; i++)
+  for (i = ip; i < iu; i++) /*Ordenacion*/
   {
-    m = min(array, i+1 , iu);
+    m = min(array, i+1 , iu); /*Almacenamiento del minimo*/
     cont += iu - i;
-    if (m == -1)
+    if (m == -1) /*Control de errores*/
       return ERR;
 
     swap1(&array[m], &array[i]);
@@ -49,16 +49,16 @@ int SelectSortInv(int *array, int ip, int iu)
 {  
   int i, m, cont = 0;
 
-   if (!array || ip < 0 || iu < 0 || iu < ip)
+   if (!array || ip < 0 || iu < 0 || iu < ip) /*Control de errores*/
     return ERR;
 
   
-  for (i = iu; i > ip; i--)
+  for (i = iu; i > ip; i--) /*Ordenacion al contrario que el SelectShort porque el indice comienza por el ultimo y acaba en el primero*/
   {
     
-    m = min(array, ip , i-1);
+    m = min(array, ip , i-1); /*Almacenamiento del minimo*/
     cont += i - ip;
-    if (m == -1)
+    if (m == -1) /*Control de errores*/ 
       return ERR;
 
     swap1(&array[m], &array[i]);
@@ -69,11 +69,11 @@ int SelectSortInv(int *array, int ip, int iu)
 int min(int *array, int ip, int iu)
 {
   int i, min;
-  if (!array || ip > iu || ip < 0)
+  if (!array || ip > iu || ip < 0) /*Control de errores*/ 
     return ERR;
 
   min = ip;
-  for (i = ip; i <= iu; i++)
+  for (i = ip; i <= iu; i++) /*Compara todos los valores de la lista proporcionada para encontrar el minimo*/ 
   {
     if (array[min] > array[i])
     {
