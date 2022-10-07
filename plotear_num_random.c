@@ -5,7 +5,6 @@
 #define MAX 1000000000
 #define SUP 10000
 #define INF 1
-#define RAND_MAX 13
 
 int random_num(int inf, int sup)
 {
