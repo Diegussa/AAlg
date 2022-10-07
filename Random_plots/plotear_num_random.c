@@ -5,7 +5,6 @@
 #define MAX 1000000000
 #define SUP 10000
 #define INF 1
-#define RAND_MAX 13
 
 int random_num(int inf, int sup)
 {
@@ -26,7 +25,6 @@ int main(){
     for(i=0;i<SUP-INF+1;i++){
         t[i]=0;
     }
-    
     for(i=0;i<MAX;i++){
         t[random_num((int)0,(int)SUP-INF)]++;
     }
