@@ -34,8 +34,8 @@ int SelectSort(int *array, int ip, int iu)
 
   for (i = ip; i < iu; i++)
   {
-    m = min(array, i , iu);
-    cont += iu - i+1;
+    m = min(array, i+1 , iu);
+    cont += iu - i;
     if (m == -1)
       return ERR;
 
@@ -56,8 +56,8 @@ int SelectSortInv(int *array, int ip, int iu)
   for (i = iu; i > ip; i--)
   {
     
-    m = min(array, ip , i);
-    cont += i - ip+1;
+    m = min(array, ip , i-1);
+    cont += i - ip;
     if (m == -1)
       return ERR;
 
