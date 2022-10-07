@@ -27,17 +27,17 @@
 /* Output:                                         */
 /* int: random number                              */
 /***************************************************/
-int random_num(int inf, int sup)
+int random_num(int inf, int sup) //genera un numero entero aleatorio entre el inf y el sup
 {
-    if (inf > sup){
+    if (inf > sup){ //Control de errores
         
         return -1;
     }
         
-    return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0));
+    return inf + (int)((sup - inf + 1.0) * rand() / (RAND_MAX + 1.0)); //Formula del libro
 }
 
-void swap(int *x, int *y)
+void swap(int *x, int *y) //Cambia el valor almacenado en cada variable por el de la otra
 {    
     int aux;
 
@@ -60,29 +60,29 @@ void swap(int *x, int *y)
 /* that contains the permitation                   */
 /* or NULL in case of error                        */
 /***************************************************/
-int *generate_perm(int N)
+int *generate_perm(int N) //Genera una permutacion de tamanyo N ordenado aleatoriamente de forma equiprobable
 {
 
     int i;
     int *perm=NULL;
 
-    if (N < 1)
+    if (N < 1) //Control de errores
         return NULL;
 
-    perm = (int *)malloc(N * sizeof(int));
-    if (!perm)
+    perm = (int *)malloc(N * sizeof(int)); //Reserva de memoria
+    if (!perm) //Control de errores
         return NULL;
 
-    for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++) //Almacena en cada posicion de la permutacion el valor de su posicion mas 1
     {
         perm[i] = i + 1;
     }
-    for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++) //Desordena la permutacion generada anteriormente
     {
         swap(&perm[i], &perm[random_num(i, N - 1)]);
     }
 
-    return perm;
+    return perm; //Devuelve el puntero de la permutacion
 }
 
 /***************************************************/
@@ -105,17 +105,17 @@ int **generate_permutations(int n_perms, int N)
     int **tabla = NULL;
     int i;
 
-    if (n_perms < 1 || N < 1)
+    if (n_perms < 1 || N < 1) //Control de errores
         return NULL;
     /*Reservamos la memoria*/
     tabla = (int **)malloc(n_perms * sizeof(int *));
-    if (!tabla)
+    if (!tabla) //Controlamos que la memoria se haya reservado adecuadamente
         return NULL;
 
-    for (i = 0; i < n_perms; i++)
+    for (i = 0; i < n_perms; i++) //Generacion de n_perms permutaciones aleatorias
     {
         tabla[i] = generate_perm(N);
-        if (!tabla[i])
+        if (!tabla[i]) //control de errores
         {
             for (i = i - 1; i >= 0; i--)
             {
