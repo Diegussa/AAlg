@@ -155,12 +155,12 @@ short save_time_table(char *file, PTIME_AA ptime, int n_times)
 
   for (i = 0; i < n_times; i++) /*Escritura de la tabla en el fichero proporcionado*/
   {
-    /* fprintf(f, "%d   %f\n", ptime[i].N,ptime[i].average_ob);*/
-    if (5 > fprintf(f, "%d    %f    %f    %d   %d\n", ptime[i].N, ptime[i].time, ptime[i].average_ob, ptime[i].max_ob, ptime[i].min_ob))
+    fprintf(f, "%d   %f\n", ptime[i].N,ptime[i].average_ob);
+    /*if (5 > fprintf(f, "%d    %f    %f    %d   %d\n", ptime[i].N, ptime[i].time, ptime[i].average_ob, ptime[i].max_ob, ptime[i].min_ob))
     {
       fclose(f);
       return ERR;
-    }
+    }*/
   }
   fclose(f);
 
