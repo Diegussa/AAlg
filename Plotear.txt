@@ -1,8 +1,8 @@
-set title "Comparacion de Tiempo de SelectSort y SelectSortInv"
+set title "Comparacion de Ob de SelectSort y SelectSortInv"
 set xlabel "Tamaño"
-set ylabel "Tiempo"
-set xrange [0:10000]
-set yrange [0:70000]
+set ylabel "Ob"
+set xrange [0:1000]
+set yrange [0:500000]
 set term jpeg
-set output "ComparacionSelectSortTime.jpeg"
-plot "times_plot.txt" using 1:2 with l,"times_plotInv.txt" using 1:2 with l
+set output "ComparacionSelectSortOb.jpeg"
+plot "ob_plot.txt" using 1:2 with l,"obInv_plot.txt" using 1:2 with l
