@@ -1,0 +1,8 @@
+set title "CosteMaxOb"
+set xlabel "Tamaño"
+set ylabel "MaxOb"
+set xrange [0:1000]
+set yrange [0:500000]
+set term jpeg
+set output "MaxObSelectSort.jpeg"
+plot "ob_plot.txt"
