@@ -2,7 +2,7 @@
 #include <limits.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX 1000000
+#define MAX 100000000
 #define SUP 100
 #define INF 1
 
