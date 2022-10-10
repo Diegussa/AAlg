@@ -1,8 +1,8 @@
-set title "CosteMaxOb"
+set title "Comparacion de Ob de SelectSort y SelectSortInv"
 set xlabel "Tamaño"
-set ylabel "MaxOb"
+set ylabel "NumOb"
 set xrange [0:1000]
 set yrange [0:500000]
 set term jpeg
-set output "MaxObSelectSort.jpeg"
-plot "ob_plot.txt"
+set output "ComparacionSelectSort.jpeg"
+plot "ob_plot.txt","obInv_plot.txt"
