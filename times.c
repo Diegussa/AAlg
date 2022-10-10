@@ -100,17 +100,14 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
 short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num_max, int incr, int n_perms)
 {
   TIME_AA *ptime = NULL;
-  int i, j, flag, correction, tam;
+  int i, j, flag, tam;
 
   if (!file || num_min < 0 || num_max < 0) /*Control de errores*/
     return ERR;
 
-  correction = (num_max % incr == num_min % incr ? 1 : 0); /*Definicion de la correcion*/
 
-  if (incr == 1)
-    correction = 0;
 
-  tam = (num_max - num_min + 1) / incr + correction; /*Reserva dinamica de la tabla de datos*/
+  tam = (num_max - num_min) / incr + 1; /*Reserva dinamica de la tabla de datos*/
 
   ptime = (TIME_AA *)calloc(tam, sizeof(TIME_AA)); /*Reserva de memoria*/
   if (!ptime)
