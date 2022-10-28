@@ -17,17 +17,16 @@
 /* Function: SelectSort    Date:                   */
 /* Your comment                                    */
 /***************************************************/
-/*Cambia los valores almacenados de una variable en la de la otra*/
+
+
 int median(int *tabla, int ip, int iu, int *pos);
 void swap1(int *x, int *y);
-int SelectSort(int *array, int ip, int iu);
-int merge(int* tabla, int ip, int iu, int imedio);
-int SelectSortInv(int *array, int ip, int iu);
+int merge(int * tabla, int ip, int iu, int imedio);
+int min(int *array, int ip, int iu);
 int quicksort(int *tabla, int ip, int iu);
 int partition(int *tabla, int ip, int iu, int *pos);
 int median_avg(int *tabla, int ip, int iu, int *pos);
 int median_stat(int *tabla, int ip, int iu, int *pos);
-int MergeSort(int* tabla, int ip, int iu);
 
 void swap1(int *x, int *y) 
 {
@@ -94,24 +93,6 @@ int min(int *array, int ip, int iu)
   }
   return min;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 int merge(int* tabla, int ip, int iu, int imedio){
@@ -189,7 +170,7 @@ devolver OK;
 */
 int quicksort(int *tabla, int ip, int iu)
 {
-    int pos, cont, cont1, cont2;
+    int pos, cont;
 
     if (!tabla || ip > iu)
     {
@@ -202,17 +183,16 @@ int quicksort(int *tabla, int ip, int iu)
     }
     else
     {
-        cont = partition(tabla, ip, iu, &pos);
-        if (ip < pos)
-        {
-            cont1 = quicksort(tabla, ip, pos - 1);
-        }
-        else
-        {
-            cont2 = quicksort(tabla, pos + 1, iu);
-        }
-        cont += cont1 + cont2;
+      cont = partition(tabla, ip, iu, &pos);
+      
+      if(ip<pos){
+         cont += quicksort(tabla, ip, pos - 1);
+      }
+      if(iu>pos){
+        cont += quicksort(tabla, pos + 1, iu);
+      }
     }
+
     return cont;
 }
 /*ind Partir(tabla T, ind P, ind U)
@@ -234,7 +214,8 @@ int partition(int *tabla, int ip, int iu, int *pos)
     {
         return ERR;
     }
-    cont = median_stat(tabla, ip, iu, pos);
+
+    cont = median(tabla, ip, iu, pos);
     m = *pos;
     k = tabla[m];
 
@@ -242,13 +223,14 @@ int partition(int *tabla, int ip, int iu, int *pos)
     m = ip;
     for (i = ip + 1; i <= iu; i++)
     {
+        cont++;
         if (tabla[i] < k)
         {
             m++;
             swap1(&tabla[i], &tabla[m]);
-            cont++;
         }
     }
+
     swap1(&tabla[ip], &tabla[m]);
     *pos = m;
     return cont;

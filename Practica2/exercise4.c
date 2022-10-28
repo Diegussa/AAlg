@@ -18,9 +18,7 @@
 int main(int argc, char** argv)
 {
   int tamano, i, j, ret;
-  int* perm = NULL, *n1=NULL, *n2=NULL;
-  n1=(int*)malloc(sizeof(int));
-  n2=(int*)malloc(sizeof(int));
+  int* perm = NULL;
   srand(time(NULL));
 
   if (argc != 3) {
@@ -52,9 +50,7 @@ int main(int argc, char** argv)
   for(j = 0; j < tamano; j++) {
     printf("%d \t", perm[j]);
   }
-  median_stat(perm,0,4,n1);
-  median_stat(perm,1,3,n2);
-  printf("%d %d\n", *n1, *n2);
+  
   ret =MergeSort(perm, 0, tamano-1);
 
   if (ret == ERR) {
@@ -62,7 +58,7 @@ int main(int argc, char** argv)
     free(perm);
     exit(-1);
   }
-  
+  printf("\nMergeSort: %d \n ", ret);
   for(j = 0; j < tamano; j++) {
     printf("%d \t", perm[j]);
   }
@@ -83,6 +79,7 @@ int main(int argc, char** argv)
     free(perm);
     exit(-1);
   }
+  printf("\nQuickSort:  %d\n ", ret);
   for(j = 0; j < tamano; j++) {
     printf("%d \t", perm[j]);
   }

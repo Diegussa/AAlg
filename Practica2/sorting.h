@@ -26,9 +26,7 @@ typedef int (* pfunc_sort)(int*, int, int);
 
 int SelectSort(int* array, int ip, int iu);
 int SelectSortInv(int* array, int ip, int iu);
-int min(int* array, int ip, int iu);
 int MergeSort(int* tabla, int ip, int iu);
 int quicksort(int *tabla, int ip, int iu);
-int median_stat(int *tabla, int ip, int iu, int *n);
 
 #endif

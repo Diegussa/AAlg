@@ -1,8 +1,8 @@
 set title "Equiprobabilidad de nuestra propuesta de random"
 set xlabel "Numero"
-set ylabel "Frecuencia"
+set ylabel "Tiempo"
 set xrange [0:10001]
 set yrange [0:12000]
 set term jpeg
-set output "NuestaRandom_num.jpeg"
-plot "random_plot.txt" title "Frecuencia" with boxes, 10000 title "Media"
+set output "MergeSortTime.jpeg"
+plot "Merge_plot.txt" using 1:2 title "Tiempo" with l

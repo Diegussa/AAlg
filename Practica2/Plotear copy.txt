@@ -1,0 +1,8 @@
+set title "Coste Medio QuickSort"
+set xlabel "Tamaño"
+set ylabel "AvarageOb"
+set xrange [0:10001]
+set yrange [0:120000]
+set term jpeg
+set output "QuickSortvsMergeSort.jpeg"
+plot "Quick_plot.txt" using 1:3 title "QuickSort" with l, x*(log(x)/log(2)),  "Merge_plot.txt" using 1:3 title "MergeSort" with l

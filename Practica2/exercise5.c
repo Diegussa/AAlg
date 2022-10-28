@@ -27,6 +27,7 @@ int main(int argc, char** argv)
 {
   int i, num_min, num_max, incr, n_perms;
   char nombre[256];
+  char nombre2[256]= "Quick_plot.txt";
   short ret;
   /*void *func[4]={SelectSort,SelectSortInv,mergesort,quicksort};*/
 
@@ -67,9 +68,15 @@ int main(int argc, char** argv)
   }
 
   /* compute times */
-  ret = generate_sorting_times(SelectSort, nombre,num_min, num_max,incr, n_perms);
+  ret = generate_sorting_times(MergeSort, nombre,num_min, num_max,incr, n_perms);
   if (ret == ERR) { /* ERR_TIME should be a negative number */
     printf("Error in function generate_sorting_times\n");
+    exit(-1);
+  }
+
+  ret = generate_sorting_times(quicksort,nombre2,num_min, num_max,incr, n_perms);
+  if (ret == ERR) { /* ERR_TIME should be a negative number */
+    printf("Error QuicK_sort in function generate_sorting_times\n");
     exit(-1);
   }
   printf("Correct output \n");
