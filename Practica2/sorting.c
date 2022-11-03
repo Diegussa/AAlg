@@ -254,7 +254,7 @@ int median_avg(int *tabla, int ip, int iu, int *pos)
         return ERR;
     }
     
-    *pos=(iu-ip)/2;
+    *pos=(iu+ip)/2;
     return 0;
 }
 
@@ -270,8 +270,12 @@ int median_stat(int *tabla, int ip, int iu, int *pos)
 
     if(tabla[ip]>tabla[iu]){
       if(tabla[ip]>tabla[media]){
-        if(tabla[media]>tabla[iu]) *pos=tabla[media];
-        else *pos=tabla[iu];
+        if(tabla[media]>tabla[iu]){
+          *pos=tabla[media];
+        } 
+        else{
+          *pos=tabla[iu];
+        }
       }
       else{
         *pos=tabla[ip];
