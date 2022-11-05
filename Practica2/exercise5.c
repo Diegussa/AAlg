@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 {
   int i, num_min, num_max, incr, n_perms;
   char nombre[256];
-  char nombre2[256]= "Quick_plot.txt";
+  char nombre2[256]= "Quick_plotMini.txt";
   short ret;
   /*void *func[4]={SelectSort,SelectSortInv,mergesort,quicksort};*/
 
@@ -47,9 +47,8 @@ int main(int argc, char** argv)
   }
 
   printf("Practice number 1, section 5\n");
-  printf("Done by: your names\n");
-  printf("Group: Your group\n");
-  
+  printf("Done by:Diego Rodríguez  y Alejandro García \n");
+  printf("Group: 1202\n");
   /* check command line */
   for(i = 1; i < argc ; i++) {
     if (strcmp(argv[i], "-num_min") == 0) {
@@ -66,15 +65,15 @@ int main(int argc, char** argv)
       fprintf(stderr, "Wrong paramenter %s\n", argv[i]);
     }
   }
-
-  /* compute times */
+  
+  /*compute times
   ret = generate_sorting_times(MergeSort, nombre,num_min, num_max,incr, n_perms);
-  if (ret == ERR) { /* ERR_TIME should be a negative number */
+  if (ret == ERR) {  ERR_TIME should be a negative number 
     printf("Error in function generate_sorting_times\n");
     exit(-1);
-  }
-
-  ret = generate_sorting_times(quicksort,nombre2,num_min, num_max,incr, n_perms);
+  }*/
+ 
+  ret = generate_sorting_times(quicksort,nombre,num_min, num_max,incr, n_perms);
   if (ret == ERR) { /* ERR_TIME should be a negative number */
     printf("Error QuicK_sort in function generate_sorting_times\n");
     exit(-1);

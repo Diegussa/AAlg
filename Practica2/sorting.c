@@ -21,7 +21,7 @@
 
 int median(int *tabla, int ip, int iu, int *pos);
 void swap1(int *x, int *y);
-int merge(int * tabla, int ip, int iu, int imedio);
+int merge(int* tabla, int ip, int iu, int imedio);
 int min(int *array, int ip, int iu);
 int quicksort(int *tabla, int ip, int iu);
 int partition(int *tabla, int ip, int iu, int *pos);
@@ -171,7 +171,6 @@ devolver OK;
 int quicksort(int *tabla, int ip, int iu)
 {
     int pos, cont;
-
     if (!tabla || ip > iu)
     {
         return ERR;
@@ -215,7 +214,7 @@ int partition(int *tabla, int ip, int iu, int *pos)
         return ERR;
     }
 
-    cont = median(tabla, ip, iu, pos);
+    cont = median_stat(tabla, ip, iu, pos);
     m = *pos;
     k = tabla[m];
 

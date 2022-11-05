@@ -23,7 +23,7 @@
 /***************************************************/
 short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime)
 {
-  int i, **p = NULL, suma_ob = 0, n_ob = 0, min_ob, max_ob = 0;
+  int i, **p = NULL, suma_ob = 0, n_ob = 0, min_ob=0, max_ob = 0;
   clock_t t1, t2;
 
   if (n_perms < 1 || N < 1 || !ptime || !metodo)
@@ -35,6 +35,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
 
   t1 = clock(); /*Almacenamiento del tiempo al comenzar*/
   /*LLamamos a la función una primera vez para inicializar los valores*/
+  printf("38 ");
   n_ob = metodo(p[0], 0, N - 1);
   if ((n_ob < 0)) /*Control de errores*/
   {
@@ -52,7 +53,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   /*Seguimos ejecutando metodo n_perms veces*/
   for (i = 1; i < n_perms; i++)
   {
-
+    
     n_ob = metodo(p[i], 0, N - 1);
     if ((n_ob) < 0) /*Control de errores*/
     {
@@ -83,7 +84,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   ptime->average_ob = (double)suma_ob / n_perms;
   ptime->min_ob = min_ob;
   ptime->max_ob = max_ob;
-
+  printf("87 ");
   for (i = 0; i <n_perms; i++) /*Liberacion de la memoria*/
       {
         free(p[i]);
@@ -103,28 +104,28 @@ short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num
 {
   TIME_AA *ptime = NULL;
   int i, j, flag, tam;
-
-  if (!file || num_min < 0 || num_max < 0) /*Control de errores*/
+  printf("114");
+  if (!file || num_min < 0 || num_max < 0 || num_max< num_min) /*Control de errores*/
     return ERR;
 
 
 
   tam = (num_max - num_min) / incr + 1; /*Reserva dinamica de la tabla de datos*/
-
+  
   ptime = (TIME_AA *)calloc(tam, sizeof(TIME_AA)); /*Reserva de memoria*/
   if (!ptime)
     return ERR;
 
   for (i = num_min, j = 0, flag = 0; i <= num_max; j++, i += incr)
   { /*Ordenacion y almacenamiento de datos*/
-    flag = average_sorting_time(method, 100, i, &ptime[j]);
+    flag = average_sorting_time(method, n_perms, i, &ptime[j]);
     if (flag == -1)
     {
       free(ptime);
       return ERR;
     }
   }
-
+  printf("128");
   if (save_time_table(file, ptime, tam) < 0) /*Guardar en fichero controlando errores*/
   {
 
