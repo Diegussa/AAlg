@@ -66,18 +66,18 @@ int main(int argc, char** argv)
     }
   }
   
-  /*compute times
-  ret = generate_sorting_times(MergeSort, nombre,num_min, num_max,incr, n_perms);
-  if (ret == ERR) {  ERR_TIME should be a negative number 
+  /*compute times*/
+  ret =generate_sorting_times(QuickSort,nombre ,num_min, num_max,incr, n_perms);
+  if (ret == ERR) { 
     printf("Error in function generate_sorting_times\n");
     exit(-1);
-  }*/
- 
-  ret = generate_sorting_times(quicksort,nombre,num_min, num_max,incr, n_perms);
-  if (ret == ERR) { /* ERR_TIME should be a negative number */
-    printf("Error QuicK_sort in function generate_sorting_times\n");
-    exit(-1);
   }
+ /*
+  ret = 
+  if (ret == ERR) { 
+    printf("Error QuicK_Sort in function generate_sorting_times\n");
+    exit(-1);
+  }*/
   printf("Correct output \n");
   return 0;
 }

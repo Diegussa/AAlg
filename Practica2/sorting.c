@@ -168,7 +168,7 @@ int MergeSort(int* tabla, int ip, int iu){
             QS(T,M+1,U);
 devolver OK;
 */
-int quicksort(int *tabla, int ip, int iu)
+int QuickSort(int *tabla, int ip, int iu)
 {
     int pos, cont;
     if (!tabla || ip > iu)
@@ -183,12 +183,11 @@ int quicksort(int *tabla, int ip, int iu)
     else
     {
       cont = partition(tabla, ip, iu, &pos);
-      
       if(ip<pos){
-         cont += quicksort(tabla, ip, pos - 1);
+         cont += QuickSort(tabla, ip, pos - 1);
       }
       if(iu>pos){
-        cont += quicksort(tabla, pos + 1, iu);
+        cont += QuickSort(tabla, pos + 1, iu);
       }
     }
 
@@ -214,7 +213,7 @@ int partition(int *tabla, int ip, int iu, int *pos)
         return ERR;
     }
 
-    cont = median_stat(tabla, ip, iu, pos);
+    cont = median(tabla, ip, iu, pos);
     m = *pos;
     k = tabla[m];
 

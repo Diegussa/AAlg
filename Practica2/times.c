@@ -22,20 +22,22 @@
 /* Your documentation                              */
 /***************************************************/
 short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime)
-{
-  int i, **p = NULL, suma_ob = 0, n_ob = 0, min_ob=0, max_ob = 0;
-  clock_t t1, t2;
+{ 
 
+  int i, **p = NULL, n_ob = 0, min_ob=0, max_ob = 0;
+  double suma_ob=0;
+  clock_t t1, t2;
+  
   if (n_perms < 1 || N < 1 || !ptime || !metodo)
     return ERR; /*Control de errores*/
-
+  
   p = generate_permutations(n_perms, N); /*Generacion de permutaciones y control de errores*/
   if (!p)
     return ERR;
-
+ 
   t1 = clock(); /*Almacenamiento del tiempo al comenzar*/
   /*LLamamos a la función una primera vez para inicializar los valores*/
-  printf("38 ");
+  
   n_ob = metodo(p[0], 0, N - 1);
   if ((n_ob < 0)) /*Control de errores*/
   {
@@ -46,10 +48,11 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
     free(p);
     return ERR;
   }
+  
   /*Inicializamos los valores*/
   min_ob = n_ob;
   max_ob = n_ob;
-  suma_ob += n_ob;
+  suma_ob += (double)n_ob/n_perms;
   /*Seguimos ejecutando metodo n_perms veces*/
   for (i = 1; i < n_perms; i++)
   {
@@ -73,7 +76,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
     {
       max_ob = n_ob;
     }
-    suma_ob += n_ob;
+    suma_ob += (double)n_ob/n_perms;
   }
   t2 = clock(); /*Almacenamiento del tiempo al finalizar*/
   
@@ -81,15 +84,18 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   ptime->time = (double)(t2 - t1) / (double)n_perms;
   ptime->N = N;
   ptime->n_elems = n_perms;
-  ptime->average_ob = (double)suma_ob / n_perms;
+  ptime->average_ob =suma_ob;
   ptime->min_ob = min_ob;
   ptime->max_ob = max_ob;
-  printf("87 ");
+ 
   for (i = 0; i <n_perms; i++) /*Liberacion de la memoria*/
       {
+
         free(p[i]);
       }
+  
   free(p);
+ 
   return OK;
 }
 
@@ -101,38 +107,43 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
 
 /*ret = generate_sorting_times(MergeSort, nombre,num_min, num_max,incr, n_perms);*/
 short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num_max, int incr, int n_perms)
-{
+{ 
+  
   TIME_AA *ptime = NULL;
-  int i, j, flag, tam;
-  printf("114");
+  int i, j=0, flag=-1, tam;
+  
   if (!file || num_min < 0 || num_max < 0 || num_max< num_min) /*Control de errores*/
     return ERR;
 
-
-
-  tam = (num_max - num_min) / incr + 1; /*Reserva dinamica de la tabla de datos*/
   
+
+  tam = ((num_max - num_min) / incr )+ 1; /*Reserva dinamica de la tabla de datos*/
+  
+
   ptime = (TIME_AA *)calloc(tam, sizeof(TIME_AA)); /*Reserva de memoria*/
   if (!ptime)
     return ERR;
-
-  for (i = num_min, j = 0, flag = 0; i <= num_max; j++, i += incr)
+  
+  for (i = num_min, j = 0, flag = -1; i <= num_max && j<tam; j++, i+= incr)
   { /*Ordenacion y almacenamiento de datos*/
-    flag = average_sorting_time(method, n_perms, i, &ptime[j]);
+    flag = average_sorting_time(method, n_perms, i, &ptime[j]); 
+    
+   
+    
+    
     if (flag == -1)
-    {
+    { 
       free(ptime);
       return ERR;
     }
   }
-  printf("128");
   if (save_time_table(file, ptime, tam) < 0) /*Guardar en fichero controlando errores*/
   {
 
     free(ptime);
     return ERR;
   }
-
+  
   free(ptime); /*Liberacion de memoria*/
   return OK;
 }

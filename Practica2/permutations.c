@@ -136,20 +136,3 @@ int **generate_permutations(int n_perms, int N)
     return tabla;
 }
 
-int mergesort(int *tabla, int ip, int iu)
-{
-    int medio,cont1,cont2,cont;
-    if (!tabla || ip>iu){
-        return ERR;
-    }
-    if(ip==iu){
-        return 0;
-    }
-    medio=(ip-iu)/2+ip;
-    cont1=mergesort(tabla,ip,medio);
-    cont2=mergesort(tabla,medio+1,iu);
-    cont=merge(tabla,ip,iu,medio);
-    if(cont==ERR) return ERR;
-    return cont1+cont2+cont;
-}
-
