@@ -66,7 +66,10 @@ int main(int argc, char** argv)
 
   free(perm);
   perm = generate_perm(tamano);
-
+  for(j = 0; j < tamano; j++) {
+    printf("%d \t", perm[j]);
+  }
+  
   if (perm == NULL) { /* error */
     printf("Error: Out of memory\n");
     exit(-1);

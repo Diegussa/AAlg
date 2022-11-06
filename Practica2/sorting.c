@@ -183,6 +183,7 @@ int QuickSort(int *tabla, int ip, int iu)
     else
     {
       cont = partition(tabla, ip, iu, &pos);
+       
       if(ip<pos){
          cont += QuickSort(tabla, ip, pos - 1);
       }
@@ -213,7 +214,7 @@ int partition(int *tabla, int ip, int iu, int *pos)
         return ERR;
     }
 
-    cont = median(tabla, ip, iu, pos);
+    cont = median_stat(tabla, ip, iu, pos);
     m = *pos;
     k = tabla[m];
 
@@ -265,18 +266,18 @@ int median_stat(int *tabla, int ip, int iu, int *pos)
     }
 
     media=(iu-ip)/2+ip;
-
+    
     if(tabla[ip]>tabla[iu]){
       if(tabla[ip]>tabla[media]){
         if(tabla[media]>tabla[iu]){
-          *pos=tabla[media];
+          *pos=media;
         } 
         else{
-          *pos=tabla[iu];
+          *pos=iu;
         }
       }
       else{
-        *pos=tabla[ip];
+        *pos=ip;
         return 2;
       }
     }
