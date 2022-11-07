@@ -1,8 +1,8 @@
-set title "Comparación de los las funcinoes median del QuickSort"
+set title "Comparación de los las funcinoes median del QuickSort y MergeSort"
 set xlabel "Tamaño"
 set ylabel "Tiempo"
 set xrange [0:1000]
-set yrange [0:75]
+set yrange [0:105]
 set term jpeg
-set output "QuickSortDistintasMedianTiempos.jpeg"
-plot "Quick_plot.txt" using 1:2 lt rgb "blue" title "QuickSort median" with l ,"Quick_plot2.txt" using 1:2 lt rgb "violet" title "QuickSort median avg" with l ,"Quick_plot3.txt" using 1:2 lt rgb "green" title "QuickSort median stat" with l
+set output "QuickSortDistintasMedianYMergeSortTiempos.jpeg"
+plot "Quick_plot.txt" using 1:2 lt rgb "blue" title "QuickSort median" with l ,"Merge_plot.txt" using 1:2 lt rgb "red" title "MergeSort" with l ,"Quick_plot2.txt" using 1:2 lt rgb "violet" title "QuickSort median avg" with l ,"Quick_plot3.txt" using 1:2 lt rgb "green" title "QuickSort median stat" with l

@@ -67,7 +67,7 @@ int main(int argc, char** argv)
   }
   
   /*compute times*/
-  ret =generate_sorting_times(QuickSort,nombre ,num_min, num_max,incr, n_perms);
+  ret =generate_sorting_times(MergeSort,nombre ,num_min, num_max,incr, n_perms);
   if (ret == ERR) { 
     printf("Error in function generate_sorting_times\n");
     exit(-1);
