@@ -7,6 +7,7 @@ void swap1(int *x, int *y)
   int aux = *x;
   *x = *y;
   *y = aux;
+  
 }
 
 int WorstCaseMerge(int *tabla, int ip,int iu){
