@@ -1,8 +1,8 @@
-set title "Comparación de los las funcinoes median del QuickSort y MergeSort"
+set title "QuickSort peor caso median"
 set xlabel "Tamaño"
-set ylabel "Tiempo"
+set ylabel "OB"
 set xrange [0:1000]
-set yrange [0:105]
+set yrange [0:50000]
 set term jpeg
-set output "QuickSortDistintasMedianYMergeSortTiempos.jpeg"
-plot "Quick_plot.txt" using 1:2 lt rgb "blue" title "QuickSort median" with l ,"Merge_plot.txt" using 1:2 lt rgb "red" title "MergeSort" with l ,"Quick_plot2.txt" using 1:2 lt rgb "violet" title "QuickSort median avg" with l ,"Quick_plot3.txt" using 1:2 lt rgb "green" title "QuickSort median stat" with l
+set output "QuickSortWorst.jpeg"
+plot "Quick_plot2.txt" using 1:3 lt rgb "blue" title "QuickSort worst median" with l, x*log(x)/log(2) title "Nlog(N)" lt rgb "red", x*x title "N^2" lt rgb "orange"

@@ -23,7 +23,6 @@ int median(int *tabla, int ip, int iu, int *pos);
 void swap1(int *x, int *y);
 int merge(int* tabla, int ip, int iu, int imedio);
 int min(int *array, int ip, int iu);
-int quicksort(int *tabla, int ip, int iu);
 int partition(int *tabla, int ip, int iu, int *pos);
 int median_avg(int *tabla, int ip, int iu, int *pos);
 int median_stat(int *tabla, int ip, int iu, int *pos);
@@ -168,6 +167,21 @@ int MergeSort(int* tabla, int ip, int iu){
             QS(T,M+1,U);
 devolver OK;
 */
+
+int WorstCaseMerge(int *tabla, int ip,int iu){
+  int i,j;
+  int aux[10000];
+    for(i=ip,j=0;i<iu;i+=2,j++){
+        aux[j]=tabla[i];
+        aux[j+(iu-ip)/2]=tabla[i+1];
+    }
+    for(i=ip;i<=iu;i++){
+      tabla[i]=aux[i];
+    }
+    WorstCaseMerge(tabla,ip,(iu-ip)/2);
+    WorstCaseMerge(tabla,(iu-ip)/2+1,iu);
+
+}
 int QuickSort(int *tabla, int ip, int iu)
 {
     int pos, cont;
@@ -214,7 +228,7 @@ int partition(int *tabla, int ip, int iu, int *pos)
         return ERR;
     }
 
-    cont = median_stat(tabla, ip, iu, pos);
+    cont = median(tabla, ip, iu, pos);
     m = *pos;
     k = tabla[m];
 

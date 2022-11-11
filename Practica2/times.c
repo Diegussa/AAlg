@@ -27,6 +27,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   int i, **p = NULL, n_ob = 0, min_ob=0, max_ob = 0;
   double suma_ob=0;
   clock_t t1, t2;
+
   
   if (n_perms < 1 || N < 1 || !ptime || !metodo)
     return ERR; /*Control de errores*/
@@ -34,7 +35,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   p = generate_permutations(n_perms, N); /*Generacion de permutaciones y control de errores*/
   if (!p)
     return ERR;
- 
+  QuickSort(p[0],0,N-1);
   t1 = clock(); /*Almacenamiento del tiempo al comenzar*/
   /*LLamamos a la función una primera vez para inicializar los valores*/
   
@@ -48,7 +49,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
     free(p);
     return ERR;
   }
-  
+
   /*Inicializamos los valores*/
   min_ob = n_ob;
   max_ob = n_ob;
@@ -56,7 +57,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   /*Seguimos ejecutando metodo n_perms veces*/
   for (i = 1; i < n_perms; i++)
   {
-    
+    QuickSort(p[i],0,N-1);
     n_ob = metodo(p[i], 0, N - 1);
     if ((n_ob) < 0) /*Control de errores*/
     {
