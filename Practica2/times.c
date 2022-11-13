@@ -35,10 +35,10 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   p = generate_permutations(n_perms, N); /*Generacion de permutaciones y control de errores*/
   if (!p)
     return ERR;
-  QuickSort(p[0],0,N-1);
   t1 = clock(); /*Almacenamiento del tiempo al comenzar*/
   /*LLamamos a la función una primera vez para inicializar los valores*/
-  
+  MergeSort(p[0],0,N-1);
+  WorstCaseMerge(p[0],0,N-1);
   n_ob = metodo(p[0], 0, N - 1);
   if ((n_ob < 0)) /*Control de errores*/
   {
@@ -57,7 +57,8 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   /*Seguimos ejecutando metodo n_perms veces*/
   for (i = 1; i < n_perms; i++)
   {
-    QuickSort(p[i],0,N-1);
+     MergeSort(p[i],0,N-1);
+    WorstCaseMerge(p[i],0,N-1);
     n_ob = metodo(p[i], 0, N - 1);
     if ((n_ob) < 0) /*Control de errores*/
     {
@@ -109,7 +110,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
 /*ret = generate_sorting_times(MergeSort, nombre,num_min, num_max,incr, n_perms);*/
 short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num_max, int incr, int n_perms)
 { 
-  
+ 
   TIME_AA *ptime = NULL;
   int i, j=0, flag=-1, tam;
   
@@ -119,7 +120,7 @@ short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num
   
 
   tam = ((num_max - num_min) / incr )+ 1; /*Reserva dinamica de la tabla de datos*/
-  
+ 
 
   ptime = (TIME_AA *)calloc(tam, sizeof(TIME_AA)); /*Reserva de memoria*/
   if (!ptime)
@@ -128,7 +129,7 @@ short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num
   for (i = num_min, j = 0, flag = -1; i <= num_max && j<tam; j++, i+= incr)
   { /*Ordenacion y almacenamiento de datos*/
     flag = average_sorting_time(method, n_perms, i, &ptime[j]); 
-    
+
    
     
     
@@ -138,6 +139,7 @@ short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num
       return ERR;
     }
   }
+  
   if (save_time_table(file, ptime, tam) < 0) /*Guardar en fichero controlando errores*/
   {
 

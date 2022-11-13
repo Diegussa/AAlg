@@ -10,30 +10,26 @@ void swap1(int *x, int *y)
   
 }
 
-int WorstCaseMerge(int *tabla, int ip,int iu){
+void WorstCaseMerge(int *tabla, int ip,int iu){
   int i,j;
   int aux[10000];
-  if(ip>= (iu -1)){
-    return;
-  }
+
+    if(ip >= (iu -1)){
+        return ;
+    }
+        
     for(i=ip,j=ip;i<iu;i+=2,j++){
         aux[j]=tabla[i];
         aux[j+(iu-ip+1)/2]=tabla[i+1];
     }
-    for(i=ip;i<=iu;i++){
-        printf("%d ",aux[i]);
-
-    }
-    printf("\n\n");
-    for(i=ip;i<=iu;i++){
+     for(i=ip;i<=iu;i++){
       tabla[i]=aux[i];
-      printf("%d ",tabla[i]);
     }
 
-    printf("\n");
-    WorstCaseMerge(tabla,ip,(iu-ip)/2);
-    WorstCaseMerge(tabla,(iu-ip)/2+1,iu);
+    WorstCaseMerge(tabla,ip,(iu-ip)/2+ip);
 
+    WorstCaseMerge(tabla,(iu-ip)/2+1+ip,iu);
+    return ;
 }
 
 /*ind Partir(tabla T, ind P, ind U)
@@ -116,14 +112,14 @@ int quicksort(int *tabla, int ip, int iu){
 
 int main(){
     int *tabla=NULL, i;
-
-    tabla=(int*)calloc(8, sizeof(int));
-    for(i=1; i<=8; i++){
+    int n=16;
+    tabla=(int*)calloc(n, sizeof(int));
+    for(i=1; i<=n; i++){
         tabla[i-1]=i;
     }
 
-    WorstCaseMerge(tabla,0,7);
-    for(i=0; i<16; i++){
+    WorstCaseMerge(tabla,0,n-1);
+    for(i=0; i<n; i++){
         printf("%d ", tabla[i]);
     }
 

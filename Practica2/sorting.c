@@ -168,19 +168,26 @@ int MergeSort(int* tabla, int ip, int iu){
 devolver OK;
 */
 
-int WorstCaseMerge(int *tabla, int ip,int iu){
+void WorstCaseMerge(int *tabla, int ip,int iu){
   int i,j;
   int aux[10000];
-    for(i=ip,j=0;i<iu;i+=2,j++){
-        aux[j]=tabla[i];
-        aux[j+(iu-ip)/2]=tabla[i+1];
+
+    if(ip >= (iu -1)){
+        return ;
     }
-    for(i=ip;i<=iu;i++){
+        
+    for(i=ip,j=ip;i<iu;i+=2,j++){
+        aux[j]=tabla[i];
+        aux[j+(iu-ip+1)/2]=tabla[i+1];
+    }
+     for(i=ip;i<=iu;i++){
       tabla[i]=aux[i];
     }
-    WorstCaseMerge(tabla,ip,(iu-ip)/2);
-    WorstCaseMerge(tabla,(iu-ip)/2+1,iu);
 
+    WorstCaseMerge(tabla,ip,(iu-ip)/2+ip);
+
+    WorstCaseMerge(tabla,(iu-ip)/2+1+ip,iu);
+    return ;
 }
 int QuickSort(int *tabla, int ip, int iu)
 {

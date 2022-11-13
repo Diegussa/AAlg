@@ -28,5 +28,6 @@ int SelectSort(int* array, int ip, int iu);
 int SelectSortInv(int* array, int ip, int iu);
 int MergeSort(int* tabla, int ip, int iu);
 int QuickSort(int *tabla, int ip, int iu);
+void WorstCaseMerge(int *tabla, int ip,int iu);
 
 #endif
