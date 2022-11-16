@@ -37,8 +37,7 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
     return ERR;
   t1 = clock(); /*Almacenamiento del tiempo al comenzar*/
   /*LLamamos a la función una primera vez para inicializar los valores*/
-  MergeSort(p[0],0,N-1);
-  WorstCaseMerge(p[0],0,N-1);
+
   n_ob = metodo(p[0], 0, N - 1);
   if ((n_ob < 0)) /*Control de errores*/
   {
@@ -57,8 +56,6 @@ short average_sorting_time(pfunc_sort metodo, int n_perms, int N, PTIME_AA ptime
   /*Seguimos ejecutando metodo n_perms veces*/
   for (i = 1; i < n_perms; i++)
   {
-     MergeSort(p[i],0,N-1);
-    WorstCaseMerge(p[i],0,N-1);
     n_ob = metodo(p[i], 0, N - 1);
     if ((n_ob) < 0) /*Control de errores*/
     {

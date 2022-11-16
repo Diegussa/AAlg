@@ -70,7 +70,7 @@ void swap(int *x, int *y)
 int *generate_perm(int N)
 {
 
-    int i;
+    int i,ret;
     int *perm = NULL;
 
     if (N < 1) /*Control de errores*/
@@ -86,7 +86,11 @@ int *generate_perm(int N)
     }
     for (i = 0; i < N; i++) /*Desordena la permutacion generada anteriormente*/
     {
-        swap(&perm[i], &perm[random_num(i, N - 1)]);
+        ret=random_num(i, N - 1);
+        if(ret==-1){
+            return NULL;
+        }
+        swap(&perm[i], &perm[ret]);
     }
 
     return perm; /*Devuelve el puntero de la permutacion*/

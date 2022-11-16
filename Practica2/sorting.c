@@ -171,7 +171,7 @@ devolver OK;
 void WorstCaseMerge(int *tabla, int ip,int iu){
   int i,j;
   int *aux=NULL;
-    if(ip >= (iu -1)){
+    if(ip >= (iu -1 || !tabla || ip>iu)){
         return ;
     }
     aux=(int*)calloc(iu-ip+1,sizeof(int));
