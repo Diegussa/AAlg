@@ -46,7 +46,7 @@ int SelectSort(int *array, int ip, int iu)
   {
     m = min(array, i+1 , iu); /*Almacenamiento del minimo*/
     cont += iu - i;
-    if (m == -1) /*Control de errores*/
+    if (m == ERR) /*Control de errores*/
       return ERR;
 
     swap1(&array[m], &array[i]);
@@ -68,7 +68,7 @@ int SelectSortInv(int *array, int ip, int iu)
     
     m = min(array, ip , i-1); /*Almacenamiento del minimo*/
     cont += i - ip;
-    if (m == -1) /*Control de errores*/ 
+    if (m == ERR) /*Control de errores*/ 
       return ERR;
 
     swap1(&array[m], &array[i]);
@@ -216,7 +216,9 @@ int QuickSort(int *tabla, int ip, int iu)
     else
     {
       cont = partition(tabla, ip, iu, &pos);
-       
+      if(cont==ERR){
+        return ERR;
+      }
       if(ip<pos){
          cont += QuickSort(tabla, ip, pos - 1);
       }
@@ -248,6 +250,9 @@ int partition(int *tabla, int ip, int iu, int *pos)
     }
 
     cont = median(tabla, ip, iu, pos);
+    if(cont==ERR){
+        return ERR;
+      }
     m = *pos;
     k = tabla[m];
 
