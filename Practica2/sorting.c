@@ -137,15 +137,15 @@ int merge(int* tabla, int ip, int iu, int imedio){
 int MergeSort(int* tabla, int ip, int iu){
   int imedio, m1, m2, m3;
 
-  if(!tabla||ip>iu) return -1;
+  if(!tabla||ip>iu) return ERR;
 
-  if(ip==iu) return 0;
+  if(ip==iu) return OK;
 
   imedio=(iu-ip)/2+ip;
   m1=MergeSort(tabla, ip, imedio);
-  /*if(m1==ERR) return ERR;*/
+  if(m1==ERR) return ERR;
   m2=MergeSort(tabla,imedio+1, iu);
-  /*if(m2==ERR) return ERR;*/
+  if(m2==ERR) return ERR;
 
 
   m3=merge(tabla, ip, iu, imedio+1);
@@ -167,17 +167,12 @@ int MergeSort(int* tabla, int ip, int iu){
             QS(T,M+1,U);
 devolver OK;
 */
-
-void WorstCaseMerge(int *tabla, int ip,int iu){
+void WorstCaseMergeRec(int *tabla,int *aux,int ip,int iu){
   int i,j;
-  int *aux=NULL;
-    if(ip >= (iu -1 || !tabla || ip>iu)){
+    if(ip >= (iu -1 )){
         return ;
     }
-    aux=(int*)calloc(iu-ip+1,sizeof(int));
-    if(!aux){
-      return;
-    }   
+     
     for(i=ip,j=ip;i<iu;i+=2,j++){
         aux[j]=tabla[i];
         aux[j+(iu-ip+1)/2]=tabla[i+1];
@@ -186,9 +181,24 @@ void WorstCaseMerge(int *tabla, int ip,int iu){
       tabla[i]=aux[i];
     }
 
-    WorstCaseMerge(tabla,ip,(iu-ip)/2+ip);
+    WorstCaseMergeRec(tabla,aux,ip,(iu-ip)/2+ip);
 
-    WorstCaseMerge(tabla,(iu-ip)/2+1+ip,iu);
+    WorstCaseMergeRec(tabla,aux,(iu-ip)/2+1+ip,iu);
+    return ;
+}
+void WorstCaseMerge(int *tabla, int ip,int iu){
+
+  int *aux=NULL;
+    if(!tabla || ip>iu){
+        return ;
+    }
+    aux=(int*)calloc(iu-ip+1,sizeof(int));
+    if(!aux){
+      return;
+    } 
+
+    WorstCaseMergeRec(tabla,aux,ip,iu);
+    free(aux);
     return ;
 }
 int QuickSort(int *tabla, int ip, int iu)
