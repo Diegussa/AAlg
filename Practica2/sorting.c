@@ -170,12 +170,14 @@ devolver OK;
 
 void WorstCaseMerge(int *tabla, int ip,int iu){
   int i,j;
-  int aux[10000];
-
+  int *aux=NULL;
     if(ip >= (iu -1)){
         return ;
     }
-        
+    aux=(int*)calloc(iu-ip+1,sizeof(int));
+    if(!aux){
+      return;
+    }   
     for(i=ip,j=ip;i<iu;i+=2,j++){
         aux[j]=tabla[i];
         aux[j+(iu-ip+1)/2]=tabla[i+1];
