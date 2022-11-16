@@ -50,6 +50,11 @@ int main(int argc, char** argv)
   for(j = 0; j < tamano; j++) {
     printf("%d \t", perm[j]);
   }
+  printf("\n");
+  WorstCaseMerge(perm,0,tamano-1);
+   for(j = 0; j < tamano; j++) {
+    printf("%d \t", perm[j]);
+  }
   ret =MergeSort(perm, 0, tamano-1);
 
   if (ret == ERR) {
@@ -64,7 +69,7 @@ int main(int argc, char** argv)
   printf("\n");
 
   free(perm);
- perm = generate_perm(tamano);
+  perm = generate_perm(tamano);
   for(j = 0; j < tamano; j++) {
     printf("%d \t", perm[j]);
   }
