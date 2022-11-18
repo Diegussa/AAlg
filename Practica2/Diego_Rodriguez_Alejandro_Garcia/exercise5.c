@@ -27,7 +27,6 @@ int main(int argc, char** argv)
 {
   int i, num_min, num_max, incr, n_perms;
   char nombre[256];
-  char nombre2[256]= "Quick_plotMini.txt";
   short ret;
   /*void *func[4]={SelectSort,SelectSortInv,mergesort,quicksort};*/
 
