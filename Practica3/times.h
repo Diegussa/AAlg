@@ -21,6 +21,7 @@
 
 #include "sorting.h"
 #include "search.h"
+#include "permutations.h"
 /* type definitions */
 typedef struct time_aa {
   int N;           /* size of each element */
@@ -36,7 +37,7 @@ typedef struct time_aa {
 short average_sorting_time(pfunc_sort method, int n_perms,int N, PTIME_AA ptime);
 short generate_sorting_times(pfunc_sort method, char* file, int num_min, int num_max, int incr, int n_perms);
 short save_time_table(char* file, PTIME_AA time, int n_times);
-
+short generate_search_times(pfunc_search method, pfunc_key_generator generator,int order, char* file, int num_min, int num_max, int incr, int n_times);
 short average_search_time(pfunc_search method, pfunc_key_generator generator, char order, int N, int n_times, PTIME_AA ptime);
 
 #endif

@@ -79,7 +79,6 @@ int main(int argc, char** argv)
     free_dictionary(pdict);
     exit(-1);
   }
-
   nob = search_dictionary(pdict,key,&pos,lin_search);
 
   if(nob >= 0) {

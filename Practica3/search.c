@@ -10,7 +10,7 @@
  */
 
 #include "search.h"
-
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -78,7 +78,12 @@ PDICT init_dictionary (int size, char order)
   return DICT;
 	/* your code */
 }
-
+void print_dict(PDICT pdict){
+  int i;
+  for (i=0;i<pdict->n_data;i++){
+    printf(" %d ",pdict->table[i]);
+  }
+}
 void free_dictionary(PDICT pdict)
 {
 	if(!pdict) return;
@@ -181,8 +186,10 @@ int lin_search(int *table,int F,int L,int key, int *ppos)
       return i-F+1;
     }
   }
-  return NOT_FOUND;
+  *ppos=i=NOT_FOUND;
+  return L-F+1;
 }
+
 
 int lin_auto_search(int *table,int F,int L,int key, int *ppos)
 {
