@@ -96,7 +96,7 @@ int insert_dictionary(PDICT pdict, int key)
 {
   int i;
 	if(!pdict) return ERR;
-  if(pdict->size==pdict->n_data) return ERR;
+  if(pdict->size==pdict->n_data) return ERR;/*Comprobamos que no este lleno*/
 
   if(pdict->n_data==0){ /*Si el diccionario está vacío*/
     pdict->table[0]=key;
@@ -112,25 +112,40 @@ int insert_dictionary(PDICT pdict, int key)
   }
   else{
     i=pdict->n_data-1;
+    if(pdict->table[i]<key){/*Es mayor que el ultimo*/
+      pdict->table[i+1]=key;
+      pdict->n_data++;
+      
+      return 1;
+    }
+    i--;
     while(i>=0 && pdict->table[i]>key){
       pdict->table[i+1]=pdict->table[i];
       i--;
     }
-    pdict->table[i+1]=key;
+    if(i<0) i++;
+    pdict->table[i]=key;
   }
 
   pdict->n_data++;
 
-  return pdict->n_data-i;
+  return pdict->n_data-i-1;
 }
 
 int massive_insertion_dictionary (PDICT pdict,int *keys, int n_keys)
 {
-  int i,count=0,nob;
+  int i,count=0,nob,j;
   if(!pdict||!keys||n_keys<0){
     return ERR;
   }
   for(i=0;i<n_keys;i++){
+
+    printf("\nIndice: %d Key: %d",i,keys[i]);
+    printf(" Imprimo tabla preinserción: ");
+    for(j=0;j<pdict->n_data;j++){
+      printf("%d ",pdict->table[j]);
+    }
+    printf("\n");
     nob=insert_dictionary(pdict,keys[i]);
     if(nob<0){
       return ERR;
@@ -142,7 +157,13 @@ int massive_insertion_dictionary (PDICT pdict,int *keys, int n_keys)
 
 int search_dictionary(PDICT pdict, int key, int *ppos, pfunc_search method)
 {
+  int i=0;
   if(!pdict||!ppos||!method) return ERR;
+  printf("Imprimo tabla: ");
+  for(i=0;i<pdict->n_data;i++){
+    printf("%d ",pdict->table[i]);
+  }
+  printf("\n");
   return method(pdict->table, 0, pdict->n_data-1, key, ppos);
 }
 
@@ -158,7 +179,8 @@ int bin_search(int *table,int F,int L,int key, int *ppos)
       *ppos=F;
       return 1;
     }
-    else return NOT_FOUND;
+    *ppos=NOT_FOUND;
+    return 1;
   }
 
   med=(F+L)/2;
@@ -199,9 +221,9 @@ int lin_auto_search(int *table,int F,int L,int key, int *ppos)
   if(table[F]==key){
       *ppos=F;
       return 1;
-    }
-  
-  for(i=F; i<=L; i++){
+  }
+
+  for(i=F+1; i<=L; i++){
     if(table[i]==key){
       table[i]=table[i-1];
       table[i-1]=key;
@@ -209,6 +231,7 @@ int lin_auto_search(int *table,int F,int L,int key, int *ppos)
       return i-F+1;
     }
   }
-  
-  return NOT_FOUND;
+
+  *ppos=NOT_FOUND;
+  return L-F+1;
 }

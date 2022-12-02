@@ -95,30 +95,39 @@ int main(int argc, char** argv)
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+  printf("Lin search cheack");
   ret = generate_search_times(lin_auto_search, uniform_key_generator, NOT_SORTED, 
                                 Name2, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+  printf("Lin auto search cheack");
+
   ret = generate_search_times(bin_search, uniform_key_generator,SORTED, 
                                 Name3, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+    printf("Bin search cheack");
+
+  return 1;
   ret = generate_search_times(lin_search, potential_key_generator,NOT_SORTED, 
                                 Name4, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+
    ret = generate_search_times(lin_auto_search, potential_key_generator,NOT_SORTED, 
                                 Name5, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+    return 1;
+
    ret = generate_search_times(bin_search, potential_key_generator,SORTED, 
                                 Name6, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
