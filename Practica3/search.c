@@ -118,7 +118,6 @@ int insert_dictionary(PDICT pdict, int key)
       
       return 1;
     }
-    i--;
     while(i>=0 && pdict->table[i]>key){
       pdict->table[i+1]=pdict->table[i];
       i--;
@@ -134,18 +133,18 @@ int insert_dictionary(PDICT pdict, int key)
 
 int massive_insertion_dictionary (PDICT pdict,int *keys, int n_keys)
 {
-  int i,count=0,nob,j;
+  int i,count=0,nob;
   if(!pdict||!keys||n_keys<0){
     return ERR;
   }
   for(i=0;i<n_keys;i++){
 
-    printf("\nIndice: %d Key: %d",i,keys[i]);
+    /*printf("\nIndice: %d Key: %d",i,keys[i]);
     printf(" Imprimo tabla preinserción: ");
     for(j=0;j<pdict->n_data;j++){
-      printf("%d ",pdict->table[j]);
+        printf("%d ",pdict->table[j]);
     }
-    printf("\n");
+    printf("\n");*/
     nob=insert_dictionary(pdict,keys[i]);
     if(nob<0){
       return ERR;
@@ -157,13 +156,13 @@ int massive_insertion_dictionary (PDICT pdict,int *keys, int n_keys)
 
 int search_dictionary(PDICT pdict, int key, int *ppos, pfunc_search method)
 {
-  int i=0;
+  
   if(!pdict||!ppos||!method) return ERR;
-  printf("Imprimo tabla: ");
+  /*printf("Imprimo tabla buscando la clave %d: ",key);
   for(i=0;i<pdict->n_data;i++){
     printf("%d ",pdict->table[i]);
   }
-  printf("\n");
+  printf("\n");*/
   return method(pdict->table, 0, pdict->n_data-1, key, ppos);
 }
 

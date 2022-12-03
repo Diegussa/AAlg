@@ -89,20 +89,21 @@ int main(int argc, char** argv)
 
   /*calculamos los tiempos */
   /*Para n_times =1 en principio*/
+  n_times=1;
   ret = generate_search_times(lin_search, uniform_key_generator, NOT_SORTED, 
                                 Name1, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
-  printf("Lin search cheack");
+  printf("Lin search  uniform cheack\n");
   ret = generate_search_times(lin_auto_search, uniform_key_generator, NOT_SORTED, 
                                 Name2, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
-  printf("Lin auto search cheack");
+  printf("Lin auto search  ntimes=1 uniform cheack\n");
 
   ret = generate_search_times(bin_search, uniform_key_generator,SORTED, 
                                 Name3, num_min, num_max, incr, n_times);
@@ -110,15 +111,15 @@ int main(int argc, char** argv)
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
-    printf("Bin search cheack");
+    printf("Bin search ntimes=1 uniform cheack\n");
 
-  return 1;
   ret = generate_search_times(lin_search, potential_key_generator,NOT_SORTED, 
                                 Name4, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+  printf("Lin search ntimes=1  potential cheack\n");
 
    ret = generate_search_times(lin_auto_search, potential_key_generator,NOT_SORTED, 
                                 Name5, num_min, num_max, incr, n_times);
@@ -126,7 +127,8 @@ int main(int argc, char** argv)
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
-    return 1;
+    printf("Lin auto search ntimes=1  potential cheack\n");
+
 
    ret = generate_search_times(bin_search, potential_key_generator,SORTED, 
                                 Name6, num_min, num_max, incr, n_times);
@@ -134,83 +136,108 @@ int main(int argc, char** argv)
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+    printf("Bin search ntimes=1 potential cheack\n");
 
   /*Para n_times 100*/
+  n_times=100;
    ret = generate_search_times(lin_search, uniform_key_generator, NOT_SORTED, 
-                                Name11, num_min, num_max, incr, 100);
+                                Name11, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+  printf("Lin search ntimes=100 uniform cheack\n");
   ret = generate_search_times(lin_auto_search, uniform_key_generator, NOT_SORTED, 
-                                Name12, num_min, num_max, incr, 100);
+                                Name12, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
-  ret = generate_search_times(bin_search, uniform_key_generator,SORTED, 
-                                Name13, num_min, num_max, incr, 100);
-  if (ret == ERR) { 
-    printf("Error in function generate_search_times\n");
-    exit(-1);
-  }
-  ret = generate_search_times(lin_search, potential_key_generator,NOT_SORTED, 
-                                Name14, num_min, num_max, incr, 100);
-  if (ret == ERR) { 
-    printf("Error in function generate_search_times\n");
-    exit(-1);
-  }
-   ret = generate_search_times(lin_auto_search, potential_key_generator,NOT_SORTED, 
-                                Name15, num_min, num_max, incr, 100);
-  if (ret == ERR) { 
-    printf("Error in function generate_search_times\n");
-    exit(-1);
-  }
-   ret = generate_search_times(bin_search, potential_key_generator,SORTED, 
-                                Name16, num_min, num_max, incr, 100);
-  if (ret == ERR) { 
-    printf("Error in function generate_search_times\n");
-    exit(-1);
-  }
+  printf("Lin auto search  ntimes=100 uniform cheack\n");
 
+  ret = generate_search_times(bin_search, uniform_key_generator,SORTED, 
+                                Name13, num_min, num_max, incr, n_times);
+  if (ret == ERR) { 
+    printf("Error in function generate_search_times\n");
+    exit(-1);
+  }
+    printf("Bin search ntimes=100 uniform cheack\n");
+
+  ret = generate_search_times(lin_search, potential_key_generator,NOT_SORTED, 
+                                Name14, num_min, num_max, incr, n_times);
+  if (ret == ERR) { 
+    printf("Error in function generate_search_times\n");
+    exit(-1);
+  }
+  printf("Lin search ntimes=100  potential cheack\n");
+
+   ret = generate_search_times(lin_auto_search, potential_key_generator,NOT_SORTED, 
+                                Name15, num_min, num_max, incr, n_times);
+  if (ret == ERR) { 
+    printf("Error in function generate_search_times\n");
+    exit(-1);
+  }
+    printf("Lin auto search ntimes=100  potential cheack\n");
+
+
+   ret = generate_search_times(bin_search, potential_key_generator,SORTED, 
+                                Name16, num_min, num_max, incr, n_times);
+  if (ret == ERR) { 
+    printf("Error in function generate_search_times\n");
+    exit(-1);
+  }
+    printf("Bin search ntimes=100 potential cheack\n");
 
   /*Para n_times 1000 */
+  n_times=1000;
     ret = generate_search_times(lin_search, uniform_key_generator, NOT_SORTED, 
-                                Name21, num_min, num_max, incr, 1000);
+                                Name21, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+    printf("Lin search ntimes=1000 uniform cheack\n");
+
   ret = generate_search_times(lin_auto_search, uniform_key_generator, NOT_SORTED, 
-                                Name22, num_min, num_max, incr, 1000);
+                                Name22, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+    printf("Lin auto search  ntimes=1000 uniform cheack\n");
+
   ret = generate_search_times(bin_search, uniform_key_generator,SORTED, 
-                                Name23, num_min, num_max, incr, 1000);
+                                Name23, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+      printf("Bin search ntimes=1000 uniform cheack\n");
+
   ret = generate_search_times(lin_search, potential_key_generator,NOT_SORTED, 
-                                Name24, num_min, num_max, incr, 1000);
+                                Name24, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+    printf("Lin search ntimes=1000  potential cheack\n");
+
    ret = generate_search_times(lin_auto_search, potential_key_generator,NOT_SORTED, 
-                                Name25, num_min, num_max, incr, 1000);
+                                Name25, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+      printf("Lin auto search ntimes=1000  potential cheack\n");
+
    ret = generate_search_times(bin_search, potential_key_generator,SORTED, 
-                                Name26, num_min, num_max, incr, 1000);
+                                Name26, num_min, num_max, incr, n_times);
   if (ret == ERR) { 
     printf("Error in function generate_search_times\n");
     exit(-1);
   }
+      printf("Bin search ntimes=1000 potential cheack\n");
+
 
   printf("Correct output \n");
 

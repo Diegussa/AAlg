@@ -148,18 +148,17 @@ short generate_sorting_times(pfunc_sort method, char *file, int num_min, int num
 /*                                                 */
 /* Your documentation                              */
 /***************************************************/
-short save_time_table(char *file, PTIME_AA ptime, int n_times)
+short save_time_table(char *file, PTIME_AA ptime, int N)
 {
   FILE *f = NULL;
   int i;
-  if (!file || !ptime || n_times < 1) /*Control de errores*/
+  if (!file || !ptime || N < 1) /*Control de errores*/
     return ERR;
 
   f = fopen(file, "w"); /*Apertura de archivo*/
   if (!f)
     return ERR;
-
-  for (i = 0; i < n_times; i++) /*Escritura de la tabla en el fichero proporcionado*/
+  for (i = 0; i < N; i++) /*Escritura de la tabla en el fichero proporcionado*/
   {
     if (5 > fprintf(f, "%d    %f    %f    %d   %d\n", ptime[i].N, ptime[i].time, ptime[i].average_ob, ptime[i].max_ob, ptime[i].min_ob))
     {
@@ -184,18 +183,15 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
   if(order==SORTED){/*Tabla ordenada*/
     table=(int*)calloc(N,sizeof(int));
     if(!table) return ERR;
-    printf("Tabla ordenada ");
     uniform_key_generator(table,N,N);
-    printf("Imprimo tabla OPS: ");
+    /*printf("Imprimo tabla ordenada: ");
   for(i=0;i<N;i++){
     printf("%d ",table[i]);
-  }
-  printf("\n");
+  }*/
     (void)massive_insertion_dictionary (dict,table,N);
     free(table);
   }
   else{ /*Tabla desordenada*/
-    printf("Generate_perm ");
     table=generate_perm(N);
     if(!table) return ERR;
 
@@ -210,7 +206,6 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
   
   t1 = clock();
 
-  printf("\n");
   count=search_dictionary(dict,keys[0],&pos,method);
   max_ob=count;
   min_ob=count;
@@ -248,7 +243,7 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
 short generate_search_times(pfunc_search method, pfunc_key_generator generator,
 int order, char* file, int num_min, int num_max, int incr, int n_times){
   PTIME_AA ptime=NULL;
-  int i,tam;
+  int i,j,tam;
   if(!method||!generator||!file||num_min<0||num_max<num_min||n_times<1) return ERR;
 
   tam = (num_max - num_min) / incr + 1; /*Reserva dinamica de la tabla de datos*/
@@ -257,14 +252,14 @@ int order, char* file, int num_min, int num_max, int incr, int n_times){
     return ERR;
   }
   
-  for(i=num_min; i<=num_max; i+=incr){
-    printf("%d\n ",i);
-    if(ERR==average_search_time(method, generator, (char)order, i, n_times, &ptime[i])){
+  for(i=num_min,j=0; i<=num_max && j<tam; i+=incr,j++){
+    /*printf("Tamaño: %d\n ",i);*/
+    if(ERR==average_search_time(method, generator, (char)order, i, n_times, &ptime[j])){
       free(ptime);
       return ERR;
     }
   }
-  if(ERR==save_time_table(file,ptime, num_max-num_min+1)){
+  if(ERR==save_time_table(file,ptime, tam)){
     free(ptime);
     return ERR;
   }
