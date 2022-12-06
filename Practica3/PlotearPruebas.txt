@@ -1,0 +1,16 @@
+set title "Comparación algóritmos de búsqueda para tiempos con generación de claves uniforme"
+set xlabel "Tamaño"
+set ylabel "Tiempo"
+set xrange [0:10000]
+set yrange [0: 13]
+set term jpeg
+set output "CompUniform_Key_Pruebas.jpeg"
+plot "Lin_Search_Uniform_KeyPruebas.log" using 1:2 lt rgb "blue" title "Lin Search Tiempo" with l,"Lin_Auto_Search_Uniform_KeyPruebas.log" using 1:2 lt rgb "violet" title "Lin Auto Search Tiempo" with l, "Bin_Search_Uniform_KeyPruebas.log" using 1:2 lt rgb "green" title "Bin Search Tiempo" with l
+set title "Comparación algóritmos de búsqueda para tiempos con generación de claves potencial"
+set xlabel "Tamaño"
+set ylabel "Tiempo"
+set xrange [0:10000]
+set yrange [0: 13]
+set term jpeg
+set output "CompPotential_Key_Pruebas.jpeg"
+plot "Lin_Search_Potential_KeyPruebas.log" using 1:2 lt rgb "blue" title "Lin Search Tiempo" with l,"Lin_Auto_Search_Potential_KeyPruebas.log" using 1:2 lt rgb "violet" title "Lin Auto Search Tiempo" with l, "Bin_Search_Potential_KeyPruebas.log" using 1:2 lt rgb "green" title "Bin Search Tiempo" with l

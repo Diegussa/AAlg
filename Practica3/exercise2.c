@@ -24,6 +24,13 @@
 #include "permutations.h"
 #include "search.h"
 #include "times.h"
+#define Name31 "Lin_Search_Uniform_KeyPruebas.log"
+#define Name32 "Lin_Auto_Search_Uniform_KeyPruebas.log"
+#define Name33 "Bin_Search_Uniform_KeyPruebas.log"
+#define Name34 "Lin_Search_Potential_KeyPruebas.log"
+#define Name35 "Lin_Auto_Search_Potential_KeyPruebas.log"
+#define Name36 "Bin_Search_Potential_KeyPruebas.log"
+
 #define Name1 "Lin_Search_Uniform_KeyN_times=1.log"
 #define Name2 "Lin_Auto_Search_Uniform_KeyN_times=1.log"
 #define Name3 "Bin_Search_Uniform_KeyN_times=1.log"
@@ -86,13 +93,13 @@ int main(int argc, char** argv)
       exit(-1);
     }
   }
+    int n_perms=1000;
 
   /*calculamos los tiempos */
   /*Para n_times =1 en principio*/
   if(n_times==1){
   /*calculamos los tiempos */
   /*Para n_times =1 en principio*/
-    int n_perms=1000;
     n_times=1;
     ret = generate_search_times_aux(lin_search, uniform_key_generator, NOT_SORTED, 
                                   Name1, num_min, num_max, incr, n_times,1);
@@ -244,7 +251,7 @@ int main(int argc, char** argv)
 
 
     printf("Correct output \n");
-  }else{
+  }else if(n_times==2){
       n_times=1;
       ret = generate_search_times(lin_search, uniform_key_generator, NOT_SORTED, 
                                     Name1, num_min, num_max, incr, n_times);
@@ -396,7 +403,57 @@ int main(int argc, char** argv)
 
 
       printf("Correct output \n");
-        }
+  }else{
+      n_perms=100;
+      ret = generate_search_times_aux(lin_search, uniform_key_generator, NOT_SORTED, 
+                                    Name31, num_min, num_max, incr, n_times,n_perms);
+      if (ret == ERR) { 
+        printf("Error in function generate_search_times\n");
+        exit(-1);
+      }
+      printf("Lin search pruebas uniform cheack\n");
+      ret = generate_search_times_aux(lin_auto_search, uniform_key_generator, NOT_SORTED, 
+                                    Name32, num_min, num_max, incr, n_times,n_perms);
+      if (ret == ERR) { 
+        printf("Error in function generate_search_times\n");
+        exit(-1);
+      }
+      printf("Lin auto search  pruebas uniform cheack\n");
+
+      ret = generate_search_times_aux(bin_search, uniform_key_generator,SORTED, 
+                                    Name33, num_min, num_max, incr, n_times,n_perms);
+      if (ret == ERR) { 
+        printf("Error in function generate_search_times\n");
+        exit(-1);
+      }
+        printf("Bin search pruebas uniform cheack\n");
+
+      ret = generate_search_times_aux(lin_search, potential_key_generator,NOT_SORTED, 
+                                    Name34, num_min, num_max, incr, n_times,n_perms);
+      if (ret == ERR) { 
+        printf("Error in function generate_search_times\n");
+        exit(-1);
+      }
+      printf("Lin search pruebas pruebas potential cheack\n");
+
+      ret = generate_search_times_aux(lin_auto_search, potential_key_generator,NOT_SORTED, 
+                                    Name35, num_min, num_max, incr, n_times,n_perms);
+      if (ret == ERR) { 
+        printf("Error in function generate_search_times\n");
+        exit(-1);
+      }
+        printf("Lin auto search pruebas  potential cheack\n");
+
+
+      ret = generate_search_times_aux(bin_search, potential_key_generator,SORTED, 
+                                    Name36, num_min, num_max, incr, n_times,n_perms);
+      if (ret == ERR) { 
+        printf("Error in function generate_search_times\n");
+        exit(-1);
+      }
+        printf("Bin search pruebas potential cheack\n");
+        printf("Correct output");
+  }
   return 0;
 }
 
