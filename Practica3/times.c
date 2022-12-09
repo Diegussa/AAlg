@@ -184,10 +184,6 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
     table=(int*)calloc(N,sizeof(int));
     if(!table) return ERR;
     uniform_key_generator(table,N,N);
-    /*printf("Imprimo tabla ordenada: ");
-  for(i=0;i<N;i++){
-    printf("%d ",table[i]);
-  }*/
     (void)massive_insertion_dictionary (dict,table,N);
     free(table);
   }
@@ -199,7 +195,6 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
     free(table);
   }
 
-  /*Solucionar esto para n_times = 1 da error*/
   keys=(int*)calloc(N*n_times,sizeof(int));
   if(!keys)  return ERR;
   generator(keys,n_times*N,N);
@@ -252,10 +247,6 @@ short average_search_time_aux(pfunc_search method, pfunc_key_generator generator
         table=(int*)calloc(N,sizeof(int));
         if(!table) return ERR;
         uniform_key_generator(table,N,N);
-        /*printf("Imprimo tabla ordenada: ");
-      for(i=0;i<N;i++){
-        printf("%d ",table[i]);
-      }*/
         (void)massive_insertion_dictionary (dict,table,N);
         free(table);
       }
@@ -267,7 +258,6 @@ short average_search_time_aux(pfunc_search method, pfunc_key_generator generator
         free(table);
       }
 
-      /*Solucionar esto para n_times = 1 da error*/
       keys=(int*)calloc(N*n_times,sizeof(int));
       if(!keys)  return ERR;
       generator(keys,n_times*N,N);
@@ -322,7 +312,6 @@ int order, char* file, int num_min, int num_max, int incr, int n_times){
   }
   
   for(i=num_min,j=0; i<=num_max && j<tam; i+=incr,j++){
-    /*printf("Tamaño: %d\n ",i);*/
     if(ERR==average_search_time(method, generator, (char)order, i, n_times, &ptime[j])){
       free(ptime);
       return ERR;
