@@ -53,7 +53,7 @@
 #define Name26 "Bin_Search_Potential_KeyN_times=1000.log"
 int main(int argc, char** argv)
 {
-  int i, num_min,num_max,incr,n_times,n_perms=1000;
+  int i, num_min,num_max,incr,n_times,n_perms=100;
   char name[256];
   short ret;
  
@@ -352,7 +352,7 @@ int main(int argc, char** argv)
         printf("Bin search ntimes=100 potential cheack\n");
 
       /*Para n_times 1000 */
-      n_times=10000;
+      n_times=1000;
         ret = generate_search_times(lin_search, uniform_key_generator, NOT_SORTED, 
                                     Name21, num_min, num_max, incr, n_times);
       if (ret == ERR) { 

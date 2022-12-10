@@ -176,6 +176,7 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
   long count=0;
   PDICT dict;
   clock_t t1, t2;
+  printf("%d ", N);/*Borrar*/
   if(!method||!generator||!ptime||N<0||(((int)order!=SORTED)&&((int)order!=NOT_SORTED))) return ERR;
   dict=init_dictionary(N,order);
   if(!dict) return ERR;
@@ -209,7 +210,7 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
     
     n_ob=search_dictionary(dict,keys[i],&pos,method);
     if(n_ob<0){
-      printf("Caso: %d %d %d ", i, keys[i], n_ob);
+      printf("Caso: %d %d %d ", i, keys[i], n_ob);/*Borrar*/
     }
     if(n_ob>max_ob){
       max_ob=n_ob;
@@ -238,6 +239,8 @@ short average_search_time_aux(pfunc_search method, pfunc_key_generator generator
   long count=0;
   PDICT dict;
   clock_t t1, t2;
+  printf("%d ", N);/*Borrar*/
+
   if(!method||!generator||!ptime||N<0||(((int)order!=SORTED)&&((int)order!=NOT_SORTED))) return ERR;
   
   for(j=1;j<=n_perms;j++){
@@ -272,7 +275,7 @@ short average_search_time_aux(pfunc_search method, pfunc_key_generator generator
         
         n_ob=search_dictionary(dict,keys[i],&pos,method);
         if(n_ob<0){
-          printf("Caso: %d %d %d ", i, keys[i], n_ob);
+          printf("Caso: %d %d %d ", i, keys[i], n_ob);/*Borrar*/
         }
         if(n_ob>max_ob){
           max_ob=n_ob;
@@ -317,6 +320,7 @@ int order, char* file, int num_min, int num_max, int incr, int n_times){
       return ERR;
     }
   }
+  printf("\n");/*Borrar*/
   if(ERR==save_time_table(file,ptime, tam)){
     free(ptime);
     return ERR;
@@ -345,6 +349,8 @@ int order, char* file, int num_min, int num_max, int incr, int n_times, int n_pe
       return ERR;
     }
   }
+  printf("\n");/*Borrar*/
+
   if(ERR==save_time_table(file,ptime, tam)){
     free(ptime);
     return ERR;
