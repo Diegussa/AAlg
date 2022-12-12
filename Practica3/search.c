@@ -58,24 +58,24 @@ void potential_key_generator(int *keys, int n_keys, int max)
 
 PDICT init_dictionary (int size, char order)
 {
-   PDICT DICT;
+   PDICT DICT1;
 
   if(size<0||(order!=1 && order!=0))
     return NULL;
   
-  DICT=(PDICT)calloc(1,sizeof(DICT));
-  if(DICT==NULL){
+  DICT1=(PDICT)calloc(1,sizeof(DICT));
+  if(DICT1==NULL){
     return NULL;
   }
-  DICT->size=size;
-  DICT->n_data=0;
-  DICT->order=order;
-  DICT->table=(int*)calloc(size,sizeof(int));
-  if(DICT->table==NULL){
-    free(DICT);
+  DICT1->size=size;
+  DICT1->n_data=0;
+  DICT1->order=order;
+  DICT1->table=(int*)calloc(size,sizeof(int));
+  if(DICT1->table==NULL){
+    free(DICT1);
     return NULL;
   }
-  return DICT;
+  return DICT1;
 	/* your code */
 }
 void print_dict(PDICT pdict){

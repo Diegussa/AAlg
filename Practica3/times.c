@@ -176,7 +176,7 @@ short average_search_time(pfunc_search method, pfunc_key_generator generator, ch
   long count=0;
   PDICT dict;
   clock_t t1, t2;
-  printf("%d ", N);/*Borrar*/
+  printf("\nN: %d ", N);/*Borrar*/
   if(!method||!generator||!ptime||N<0||(((int)order!=SORTED)&&((int)order!=NOT_SORTED))) return ERR;
   dict=init_dictionary(N,order);
   if(!dict) return ERR;
@@ -239,7 +239,7 @@ short average_search_time_aux(pfunc_search method, pfunc_key_generator generator
   long count=0;
   PDICT dict;
   clock_t t1, t2;
-  printf("%d ", N);/*Borrar*/
+  printf("\nN: %d ", N);/*Borrar*/
 
   if(!method||!generator||!ptime||N<0||(((int)order!=SORTED)&&((int)order!=NOT_SORTED))) return ERR;
   
