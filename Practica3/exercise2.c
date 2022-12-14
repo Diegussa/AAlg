@@ -1,21 +1,21 @@
-/***********************************************************/
-/* Program: exercise2 Date:                             */
-/* Authors:                                                */
-/*                                                         */
-/* Program that writes in a file the average times         */
-/* of the search algorithm                                 */
-/*                                                         */
-/* Input: Command line                                     */
-/* -num_min: minimum number of elements in the table       */
-/* -num_max: maximum number of elements in the table       */
-/* -incr: increment                                       */
-/* -fkeys: number of keys to search                        */
-/* -numP: Introduce the number of permutations to average  */
-/* -outputFile: Name of the output file                    */
-/*                                                         */
-/* Output: 0 if there was an error                         */
-/*        -1 otherwise                                     */
-/***********************************************************/
+/**************************************************************/
+/* Program:       exercise2 Date:                             */
+/* Authors:Diego Rodriguez Ortiz y Alejandro Garcia Hernando  */
+/*                                                            */
+/* Program that writes in a file the average times            */
+/* of the search algorithm                                    */
+/*                                                            */
+/* Input: Command line                                        */
+/* -num_min: minimum number of elements in the table          */
+/* -num_max: maximum number of elements in the table          */
+/* -incr: increment                                           */
+/* -fkeys: number of keys to search                           */
+/* -numP: Introduce the number of permutations to average     */
+/* -outputFile: Name of the output file                       */
+/*                                                            */
+/* Output: 0 if there was an error                            */
+/*        -1 otherwise                                        */
+/**************************************************************/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -427,7 +427,7 @@ int main(int argc, char** argv)
         printf("Error in function generate_search_times\n");
         exit(-1);
       }
-        printf("Bin search pruebas uniform cheack\n");
+      printf("Bin search pruebas uniform cheack\n");  
 
       ret = generate_search_times_aux(lin_search, potential_key_generator,NOT_SORTED, 
                                     Name34, num_min, num_max, incr, n,1);
