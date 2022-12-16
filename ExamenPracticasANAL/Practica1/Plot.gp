@@ -131,3 +131,18 @@ set yrange [0: 10]
 set term jpeg
 set output "LinSearchPotential_Key_n_times=1000Tiempos.jpeg"
 plot "Lin_Search_Potential_KeyN_times=1000.log" using 1:2 lt rgb "blue" title "Lin Search Tiempo" with l
+
+###################################################################################################################################################3
+set title "Comparación algóritmos de búsqueda para OB con generación de claves potencial"
+set xlabel "Tamaño"
+set ylabel "AvOB"
+set xrange [100:1000]
+set yrange [0: 20]
+set term jpeg
+set output "CompPotential_KeyAvOBTam1000.jpeg"
+
+f(x)=a*log(x)/log(2)+b
+fit f(x) "Bin_Search_Potential_KeyN_times=1000.log" using 1:3 via a,b
+g(x)=d*log(x)/log(2)+c
+fit g(x) "Lin_Auto_Search_Potential_KeyN_times=1000.log" using 1:3 via d, c
+plot "Bin_Search_Potential_KeyN_times=1000.log" using 1:3 lt rgb "blue" title "Bin Search Tiempo" with l,f(x) title sprintf("f(x)=%.2f*log(N)+%.2f",a,b),"Lin_Auto_Search_Potential_KeyN_times=1000.log" using 1:3 lt rgb "violet" title "Lin Auto Search Tiempo" with l,g(x) title sprintf("g(x)=%.2f*log(N)+%.2f",d,c), log(x)/log(2)

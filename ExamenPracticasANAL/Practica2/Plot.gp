@@ -132,15 +132,15 @@ set term jpeg
 set output "LinSearchPotential_Key_n_times=1000Tiempos.jpeg"
 plot "Lin_Search_Potential_KeyN_times=1000.log" using 1:2 lt rgb "blue" title "Lin Search Tiempo" with l
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-set title "Comparación algóritmos de búsqueda para tiempos con generación de claves potencial"
+###################################################################################################################################################3
+set title "Comparación algóritmos de búsqueda para OB con generación de claves potencial"
 set xlabel "Tamaño"
 set ylabel "AvOB"
 set xrange [100:1000]
 set yrange [0: 20]
 set term jpeg
 set output "CompPotential_KeyAvOBTam1000.jpeg"
+
 f(x)=a*log(x)/log(2)+b
 fit f(x) "Bin_Search_Potential_KeyN_times=1000.log" using 1:3 via a,b
 g(x)=d*log(x)/log(2)+c
